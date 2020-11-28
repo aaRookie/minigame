@@ -37,10 +37,12 @@ public class Player : MonoBehaviour
     {
 
     }
+
     void fun4()
     {
 
     }
+
 
     IEnumerator MoveToNode(Node n)
     {
