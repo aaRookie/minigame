@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveToNode(Node n)
     {
-        transform.position = n.GetNodeItem().transform.position;
+        transform.position = n.GetNodeItem().transform.position+new Vector3(0,0,-0.1f);
         yield return new WaitForSeconds(0.3f);
         curNode = n;
         n.ReSetNormalNode();

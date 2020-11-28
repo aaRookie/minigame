@@ -48,7 +48,7 @@ public class Node
     }
     void CreateNode()
     {
-        GameObject node = GameObject.Instantiate(Resources.Load("MapNode"), GameObject.Find("Map").transform) as GameObject;
+        GameObject node = GameObject.Instantiate(Resources.Load("grid"), GameObject.Find("Map").transform) as GameObject;
         node.transform.position = new Vector3(this.X + 0.5f, this.Y + 0.5f, 0f);
         node.transform.name = "Node(" + X + "," + Y + ")";
         nodeRender = node.GetComponent<Renderer>();

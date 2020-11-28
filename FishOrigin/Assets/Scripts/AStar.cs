@@ -65,8 +65,8 @@ public class AStar : MonoBehaviour
     //找到当前点周围的点(不包括障碍、已经在closelist的)
     public List<Node> GetEdgeNodes(Node node, List<Node> close)
     {
-        //对周围8个Node进行筛选
-        Node LeftUp, Up, RightUp, Left, Right, LeftDown, Down, RightDown;
+        //对周围4个Node进行筛选
+        Node  Up, Left, Right, Down;
 
         //防止数组越界
         bool upCheck = node.Y + 1 <= map.Height - 1;
@@ -77,28 +77,12 @@ public class AStar : MonoBehaviour
         List<Node> edges = new List<Node>();
 
 
-        if (leftCheck && upCheck)
-        {
-            LeftUp = map.nodes[node.X - 1, node.Y + 1];
-            if (LeftUp != null && !LeftUp.isWall)
-            {
-                edges.Add(LeftUp);
-            }
-        }
         if(upCheck)
         {
             Up = map.nodes[node.X, node.Y + 1];
             if (Up!=null && !Up.isWall)
             {
                 edges.Add(Up);
-            }
-        }
-        if(rightCheck && upCheck)
-        {
-            RightUp = map.nodes[node.X + 1, node.Y + 1];
-            if(RightUp!= null && !RightUp.isWall)
-            {
-                edges.Add(RightUp);
             }
         }
         if (leftCheck)
@@ -117,28 +101,12 @@ public class AStar : MonoBehaviour
                 edges.Add(Right);
             }
         }
-        if(leftCheck && downCheck)
-        {
-            LeftDown = map.nodes[node.X - 1, node.Y - 1];
-            if(LeftDown!=null && !LeftDown.isWall)
-            {
-                edges.Add(LeftDown);
-            }
-        }
         if (downCheck)
         {
             Down = map.nodes[node.X, node.Y - 1];
             if(Down!=null && !Down.isWall)
             {
                 edges.Add(Down);
-            }
-        }
-        if(rightCheck && downCheck)
-        {
-            RightDown = map.nodes[node.X + 1, node.Y - 1];
-            if(RightDown!=null && !RightDown.isWall)
-            {
-                edges.Add(RightDown);
             }
         }
 
