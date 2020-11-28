@@ -603,7 +603,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975464109}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b0ba117f9d8e6a4a8a2aaca7154c935, type: 3}
   m_Name: 
@@ -889,6 +889,8 @@ MonoBehaviour:
   totalFactor: 1
   waveWidth: 0.3
   waveSpeed: 0.3
+  waveStartTime: 0
+  startPos: {x: 0.5, y: 0.5, z: 0, w: 0}
   _Material: {fileID: 2100000, guid: 97eace11e079a24459bb3f64fac05999, type: 2}
 --- !u!1 &1524595952
 GameObject:

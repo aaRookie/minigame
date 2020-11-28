@@ -10,18 +10,23 @@ public class Node
     public float G = 0;
     public float H = 0;
 
-    //墙
+    //石头
     public bool isWall=false;
     //荷花
     public bool isFlower = false;
+    //出发
+    public bool isBox=false;
     //藤蔓
     public bool isTree = false;
     //镜子
     public bool isMirror = false;
+    //危险
+    public bool isDanger = false;
 
     public bool FlowerSwitch = false;
     public bool TreeSwitch = false;
     public bool MirrorSwitch = false;
+    public bool BoxSwitch = false;
 
     public Node parent;
     public Map map;
@@ -63,7 +68,13 @@ public class Node
     {
         isTree = tree;
         if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
-    }   
+    }  
+    
+    public void SetIsBox(bool box)
+    {
+        isBox = box;
+        if (isBox) { nodeRender.material.SetColor("_Color", Color.yellow); }
+    }
 
     //设置镜子
     public void SetIsMirror(bool mirror)

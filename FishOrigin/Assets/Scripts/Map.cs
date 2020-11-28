@@ -114,20 +114,20 @@ public class Map : MonoBehaviour
                     //temp *= 10;
                     //nodes[i, j].ChangeY = (int)temp % 10;
                 }
-                //敌人
-                else if (MapData[i * Width + j] == 4)
+                //盒子
+                else if (MapData[i * Width + j] == 4f)
                 {
                     nodes[i, j].SetIsWall(true);
-                    nodes[i, j].SetIsTree(true);
-                }
-                //敌人
-                else if (MapData[i * Width + j] == 5)
+                    nodes[i, j].SetIsBox(true);
+                }                    
+                //镜子
+                else if (MapData[i * Width + j] == 5f)
                 {
                     nodes[i, j].SetIsWall(true);
                     nodes[i, j].SetIsTree(true);
                 }
                 //角色
-                else if (MapData[i * Width + j] == 10)
+                else if (MapData[i * Width + j] == 10f)
                 {
                     //player.SetCurNode(nodes[i, j]);
                     player_x = i;

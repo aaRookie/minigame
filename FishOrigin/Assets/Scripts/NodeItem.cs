@@ -167,6 +167,99 @@ public class NodeItem : MonoBehaviour
                 }
             }
         }
+
+        //点击藤蔓
+        if (self.isTree == true)
+        {
+            if (FlowManager.Instance.getTempFlow() == FlowManager.cFlow.choose)
+            {
+                if (Map.Instance.levelMoveNum > 0)
+                {
+                    //改变数值
+                    Map.Instance.levelMoveNum--;
+                    GameUIManager.Instance.ChangeMoveNum(Map.Instance.levelMoveNum);
+
+                    self.isTree = !self.isTree;
+
+                    //Debug.Log(self.ChangeDir);
+                    //Debug.Log(self.ChangeX);
+
+                    //获取变化范围
+                    if (influ.Count == 0)
+                    {
+                        if (self.ChangeDir == 1)
+                        {
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+                                influ.Add(new Vector2(self.X - i, self.Y));
+                            }
+                        }
+                        if (self.ChangeDir == 2)
+                        {
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+                                influ.Add(new Vector2(self.X + i, self.Y));
+                            }
+                        }
+                        if (self.ChangeDir == 3)
+                        {
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+                                influ.Add(new Vector2(self.X, self.Y - i));
+                            }
+                        }
+                        if (self.ChangeDir == 4)
+                        {
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+                                influ.Add(new Vector2(self.X, self.Y + i));
+                            }
+                        }                        
+                    }
+
+                    //数据和图片变化
+                    if (self.TreeSwitch)
+                    {
+                        for (int i = 0; i < influ.Count; i++)
+                        {
+                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(true);
+                        }
+                    }
+
+                    else if (!self.TreeSwitch)
+                    {
+                        for (int i = 0; i < influ.Count; i++)
+                        {
+                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(false);
+                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].ReSetNode();
+                        }
+                    }
+                }
+            }
+        }
+
+        //点击开关
+        if (self.isBox==true)
+        {
+            if (Map.Instance.levelMoveNum > 0)
+            {
+                //改变数值
+                Map.Instance.levelMoveNum--;
+                GameUIManager.Instance.ChangeMoveNum(Map.Instance.levelMoveNum);
+
+                self.BoxSwitch = !self.BoxSwitch;
+
+                if (self.BoxSwitch)
+                    Map.Instance.nodes[self.X, self.Y].SetIsWall(true);
+                else if (!self.BoxSwitch)
+                {
+                    Map.Instance.nodes[self.X, self.Y].SetIsWall(false);
+                    Map.Instance.nodes[self.X, self.Y].ReSetNode();
+                }
+            }
+        }
+
+
     }
 
     //光标变化
