@@ -12,8 +12,8 @@ public class Node
 
     //墙
     public bool isWall=false;
-    //石头
-    public bool isStone = false;
+    //荷花
+    public bool isFlower = false;
     //藤蔓
     public bool isTree = false;
     //镜子
@@ -52,11 +52,11 @@ public class Node
         if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
     }
 
-    //设置石头
-    public void SetIsStone(bool Stone)
+    //设置荷花
+    public void SetIsFlower(bool flower)
     {
-        isStone = Stone;
-        if (isStone) { nodeRender.material.SetColor("_Color", Color.green); }
+        isFlower = flower;
+        if (isFlower) { nodeRender.material.SetColor("_Color", Color.blue); }
     }
 
     //设置镜子

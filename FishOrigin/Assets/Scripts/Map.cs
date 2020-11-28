@@ -79,26 +79,43 @@ public class Map : MonoBehaviour
                 {
                     nodes[i, j].SetIsWall(false);
                 }
-                //障碍
+                //石头
                 else if (MapData[i * Width + j] == 1)
                 {
                     nodes[i, j].SetIsWall(true);
+                }               
+                //荷花
+                else if(MapData[i * Width + j] == 2)
+                {
+                    nodes[i, j].SetIsWall(true);
+                    nodes[i, j].SetIsFlower(true);
+                }
+                //藤蔓
+                else if (MapData[i * Width + j] == 3)
+                {
+                    nodes[i, j].SetIsWall(true);
+                    nodes[i, j].SetIsTree(true);
+                }
+                //敌人
+                else if (MapData[i * Width + j] == 4)
+                {
+                    nodes[i, j].SetIsWall(true);
+                    nodes[i, j].SetIsTree(true);
+                }
+                //敌人
+                else if (MapData[i * Width + j] == 5)
+                {
+                    nodes[i, j].SetIsWall(true);
+                    nodes[i, j].SetIsTree(true);
                 }
                 //角色
-                else if(MapData[i * Width + j] == 2)
+                else if (MapData[i * Width + j] == 10)
                 {
                     //player.SetCurNode(nodes[i, j]);
                     player_x = i;
                     player_y = j;
-                    
-                }
-                //
-                else if(MapData[i * Width + j] == 3)
-                {
 
                 }
-                //
-                
             }
         }
 

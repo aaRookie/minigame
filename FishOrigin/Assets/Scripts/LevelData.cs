@@ -69,8 +69,8 @@ public class LevelData : MonoBehaviour
     //bug,第一格必须为0
 
     [HideInInspector]
-    private int[] level1_map = new int[100] {1, 0, 0, 0, 2, 0, 0, 0, 0, 0,
-                                             1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    private int[] level1_map = new int[100] {1, 0, 0, 0, 10, 0, 0, 0, 0, 0,
+                                             1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
