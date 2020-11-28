@@ -34,7 +34,7 @@ public class Map : MonoBehaviour
     //初始化地图
     void InitMap()
     {
-        LoadLevelData(1);
+        LoadLevelData(SelectLevel.Instance.CurrentLevel);
 
         nodes = new Node[Width, Height];
         Grid_gameobject = new GameObject[Width, Height];
@@ -83,14 +83,21 @@ public class Map : MonoBehaviour
             for (int j = 0; j < Height; j++)
             {
                 Grid_gameobject[i, j] = GameObject.Find("Node(" + i + "," + j + ")").gameObject;
-                Debug.Log(Grid_gameobject[i, j].name);
+                //Debug.Log(Grid_gameobject[i, j].name);
             }
         }
 
+        SetPlayerPosition(player_x, player_y);
+    }
+
+    public void SetPlayerPosition(int x,int y)
+    {
+        player_x = x;
+        player_y = y;
         //设置玩家坐标
         player.SetCurNode(nodes[player_x, player_y]);
         //设置图片位置
-        player.transform.position = Grid_gameobject[player_x, player_y].transform.position+new Vector3(0,0,-0.1f);
+        player.transform.position = Grid_gameobject[player_x, player_y].transform.position + new Vector3(0, 0, -0.1f);
     }
 
     //加载关卡数据
