@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     }
     void fun4()
     {
-
+        Debug.Log("1");
     }
 
     IEnumerator MoveToNode(Node n)
