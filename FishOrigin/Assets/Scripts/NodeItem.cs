@@ -257,12 +257,13 @@ public class NodeItem : MonoBehaviour
 
                     if (self.X >= min_x && self.X <= max_x && self.Y >= min_y && self.Y <= max_y)
                     {
-                        self.SetEndNode();
-                        Map.Instance.levelMoveNum--;
-                        GameUIManager.Instance.ChangeMoveNum(Map.Instance.levelMoveNum);
+                            self.SetEndNode();
+                            Map.Instance.levelMoveNum--;
+                            GameUIManager.Instance.ChangeMoveNum(Map.Instance.levelMoveNum);                    
                     }
                 }
             }
+
         }
     }
 

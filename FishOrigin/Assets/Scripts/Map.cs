@@ -78,7 +78,7 @@ public class Map : MonoBehaviour
     void InitMap()
     {
         //LoadLevelData(SelectLevel.Instance.CurrentLevel);
-        LoadLevelData(2);
+        LoadLevelData(3);
 
         player_x = 0;
         player_y = 0;
@@ -199,6 +199,7 @@ public class Map : MonoBehaviour
                 {
                     GameObject temp=GameObject.Instantiate(Prefab_box, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
                     GameObject_element[i, j] = temp;
+
                     //nodes[i, j].GetNodeItem().OnMouseDown();
                 }
 
@@ -233,7 +234,6 @@ public class Map : MonoBehaviour
             case 1:
                 MapData = LevelData.Instance.Getlevel1_map();
                 levelMoveNum = LevelData.Instance.GetLevelMoveNum(1);
-                //Debug.Log(LevelData.Instance.Level1MoveNum);
                 break;
             case 2:
                 MapData = LevelData.Instance.Getlevel2_map();
@@ -261,13 +261,14 @@ public class Map : MonoBehaviour
 
     public void StartFindPath(Node start, Node end)
     {
-        Astarpath.AStarPath(start, end);
+        Astarpath.AStarPath(start, end);        
+        if(m_player.GetComponent<Player>().path.Count<=4)
         ShowPath(end);
     }
 
     void ShowPath(Node end)
     {
-        end.ShowPathNode();
+        //end.ShowPathNode();
         player.MoveToEnd(end);
     }
 

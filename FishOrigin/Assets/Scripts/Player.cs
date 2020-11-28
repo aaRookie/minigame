@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
         return curNode;
     }
 
-    Stack<Node> path = new Stack<Node>();
+    public Stack<Node> path = new Stack<Node>();
     public void MoveToEnd(Node n)
     {
         GetPath(n);
@@ -41,12 +41,17 @@ public class Player : MonoBehaviour
         curNode = n;
         n.ReSetNormalNode();
 
-        if (path.Count > 0)
+        if (path.Count > 0&&path.Count <= 4)
         {
             FlowManager.Instance.ChangeToMove();
             Node p = path.Pop();
             if(p != null)
-                StartCoroutine(MoveToNode(p));          
+                StartCoroutine(MoveToNode(p));
+        }
+        if(path.Count>4)
+        {
+            path.Clear();
+            FlowManager.Instance.ChangeToChoose();
         }
 
         if (path.Count == 0)
