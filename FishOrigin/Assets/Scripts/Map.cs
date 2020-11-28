@@ -216,6 +216,13 @@ public class Map : MonoBehaviour
         GameUIManager.Instance.ChangeMoveNum(levelMoveNum);
     }
 
+    //新增藤蔓
+    public void CreateTree(int i,int j)
+    {
+        GameObject temp = GameObject.Instantiate(Prefab_tree, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
+        GameObject_element[i, j] = temp;
+    }
+
     //设置玩家位置
     public void SetPlayerPosition(int x,int y)
     {

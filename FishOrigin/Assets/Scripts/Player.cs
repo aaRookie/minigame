@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class Player : MonoBehaviour
 {
@@ -36,8 +38,26 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveToNode(Node n)
     {
-        transform.position = n.GetNodeItem().transform.position+new Vector3(0,0,-0.1f);
-        yield return new WaitForSeconds(0.3f);
+        if (n.GetNodeItem().transform.position.y < transform.position.y)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+        }
+        else if (n.GetNodeItem().transform.position.y > transform.position.y)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
+        if (n.GetNodeItem().transform.position.x < transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+        }
+        else if (n.GetNodeItem().transform.position.x > transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
+        }
+
+        transform.DOMove(n.GetNodeItem().transform.position + new Vector3(0, 0, -0.1f),0.5f);
+        //transform.position = n.GetNodeItem().transform.position+new Vector3(0,0,-0.1f);
+        yield return new WaitForSeconds(0.5f);
         curNode = n;
         n.ReSetNormalNode();
 
