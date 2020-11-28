@@ -11,8 +11,10 @@ public class FlowManager : MonoBehaviour
     {
         pause,
         choose,
+        change,
         move,
-        dead
+        dead,
+        win
     }
 
     public cFlow getTempFlow()
@@ -36,6 +38,11 @@ public class FlowManager : MonoBehaviour
     public void ChangeToMove()
     {
         tempFlow = cFlow.move;
+    }
+
+    public void ChangeToWin()
+    {
+        tempFlow = cFlow.win;
     }
 
     public void ChangeToChoose()

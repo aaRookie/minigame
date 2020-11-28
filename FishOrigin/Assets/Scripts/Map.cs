@@ -18,10 +18,19 @@ public class Map : MonoBehaviour
     public int Width = 10;
     public Node[,] nodes;
 
-    public GameObject[,] Grid_gameobject=null;
+    public GameObject[,] Grid_gameobject = null;
+    public GameObject[,] GameObject_element = null;
+     
 
     public GameObject Prefab_player;
+    public GameObject Prefab_wall;
+    public GameObject Prefab_end;
+    public GameObject Prefab_tree;
+    public GameObject Prefab_box;
+
+
     public GameObject m_player=null;
+    public GameObject m_end = null;
 
     public float[] MapData = new float[100];
     public int levelMoveNum = 0;
@@ -29,11 +38,15 @@ public class Map : MonoBehaviour
     public int player_x=0;
     public int player_y=0;
 
+    public int end_x = 0;
+    public int end_y = 0;
+
     public void Start()
     {
         InitMap();
     }
 
+    //重置关卡
     public void ResetMap()
     {
         Destroy(m_player);
@@ -44,23 +57,37 @@ public class Map : MonoBehaviour
             {
                 Destroy(Grid_gameobject[i, j]);
                 Grid_gameobject[i, j] = null;
+                Destroy(GameObject_element[i, j]);
+                GameObject_element[i, j] = null;
             }
         }
         m_player = null;
         InitMap();
     }
 
+    public void CheckIsWin()
+    {
+        if(player_x==end_x&&player_y==end_y)
+        {
+            FlowManager.Instance.ChangeToWin();
+            Debug.Log("win");
+        }
+    }
+
     //初始化地图
     void InitMap()
     {
         //LoadLevelData(SelectLevel.Instance.CurrentLevel);
-        LoadLevelData(1);
+        LoadLevelData(2);
 
         player_x = 0;
         player_y = 0;
+        end_x = 0;
+        end_y = 0;
 
         nodes = new Node[Width, Height];
         Grid_gameobject = new GameObject[Width, Height];
+        GameObject_element=new GameObject[Width, Height];
 
         for (int i = 0; i < Width; i++)
         {
@@ -124,7 +151,7 @@ public class Map : MonoBehaviour
                 else if (MapData[i * Width + j] == 5f)
                 {
                     nodes[i, j].SetIsWall(true);
-                    nodes[i, j].SetIsTree(true);
+                    nodes[i, j].SetIsMirror(true);
                 }
                 //角色
                 else if (MapData[i * Width + j] == 10f)
@@ -133,6 +160,12 @@ public class Map : MonoBehaviour
                     player_x = i;
                     player_y = j;
 
+                }
+                //终点
+                else if(MapData[i * Width + j] == 9f)
+                {
+                    end_x = i;
+                    end_y = j;
                 }
             }
         }
@@ -145,10 +178,30 @@ public class Map : MonoBehaviour
 
                 if (i == player_x && j == player_y)
                 {
-                    m_player = GameObject.Instantiate(Prefab_player, Grid_gameobject[i, j].transform.position, Quaternion.identity);
+                    m_player = GameObject.Instantiate(Prefab_player, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -1f), Quaternion.identity);
                     player = m_player.GetComponent<Player>();
                 }
-                    
+
+                if(i== end_x&&j== end_y)
+                {
+                    m_end = GameObject.Instantiate(Prefab_end, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
+                }
+
+                //墙
+                if (MapData[i * Width + j] == 1f)
+                {
+                    GameObject.Instantiate(Prefab_wall, Grid_gameobject[i, j].transform.position+new Vector3(0,0,-0.1f), Quaternion.identity);
+                
+                }
+
+                //box
+                if (MapData[i * Width + j] == 4f)
+                {
+                    GameObject temp=GameObject.Instantiate(Prefab_box, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
+                    GameObject_element[i, j] = temp;
+                    //nodes[i, j].GetNodeItem().OnMouseDown();
+                }
+
             }
         }
 

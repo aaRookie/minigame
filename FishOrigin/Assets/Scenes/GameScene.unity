@@ -884,14 +884,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbd0bd1a01a87c41a56d90de344a70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFactor: 60
-  timeFactor: -30
-  totalFactor: 1
-  waveWidth: 0.3
-  waveSpeed: 0.3
-  waveStartTime: 0
-  startPos: {x: 0.5, y: 0.5, z: 0, w: 0}
-  _Material: {fileID: 2100000, guid: 97eace11e079a24459bb3f64fac05999, type: 2}
 --- !u!1 &1524595952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,11 +1167,21 @@ MonoBehaviour:
   Width: 10
   Prefab_player: {fileID: 1330653995925603573, guid: 20ec8ad8effef9a4b9f833731e481b4b,
     type: 3}
+  Prefab_wall: {fileID: 1330653995925603573, guid: adf0e373990db4b4fafa0a5c090cc54b,
+    type: 3}
+  Prefab_end: {fileID: 1330653995925603573, guid: 25a20d2986e95e448a2ba01ac7d209f4,
+    type: 3}
+  Prefab_tree: {fileID: 0}
+  Prefab_box: {fileID: 1330653995925603573, guid: 8406aeacbd509954f814106876a268dd,
+    type: 3}
   m_player: {fileID: 0}
+  m_end: {fileID: 1330653995925603573, guid: 25a20d2986e95e448a2ba01ac7d209f4, type: 3}
   MapData: []
   levelMoveNum: 0
   player_x: 0
   player_y: 0
+  end_x: 0
+  end_y: 0
 --- !u!4 &2065906096
 Transform:
   m_ObjectHideFlags: 0

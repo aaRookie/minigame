@@ -22,6 +22,8 @@ public class Node
     public bool isMirror = false;
     //危险
     public bool isDanger = false;
+    //终点
+    public bool isEnd = false;
 
     public bool FlowerSwitch = false;
     public bool TreeSwitch = false;
@@ -53,7 +55,7 @@ public class Node
     public void SetIsWall(bool wall)
     {
         isWall = wall;
-        if (isWall) { nodeRender.material.SetColor("_Color", Color.black); }
+        //if (isWall) { nodeRender.material.SetColor("_Color", Color.black); }
     }
 
     //设置荷花

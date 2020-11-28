@@ -12,41 +12,8 @@ public class NodeItem : MonoBehaviour
         self = node;
     }
 
-    private void OnMouseDown()
-    {
-        //空位角色移动
-        if(self.isWall==false)
-        {
-            if(FlowManager.Instance.getTempFlow()==FlowManager.cFlow.choose)
-            {
-                if(Map.Instance.levelMoveNum>0)
-                {
-                    int max_x = Map.Instance.player_x + 2;
-                    int min_x = Map.Instance.player_x - 2;
-                    int max_y = Map.Instance.player_y + 2;
-                    int min_y = Map.Instance.player_y - 2;
-                    if (max_x > 9)
-                        max_x = 9;
-                    if (min_x < 0)
-                        min_x = 0;
-                    if (max_y > 9)
-                        max_y = 9;
-                    if (min_y < 0)
-                        min_y = 0;
-
-                    //Debug.Log("player_x: " + Map.Instance.player_x + " player_y: " + Map.Instance.player_y);
-                    //Debug.Log("x from "+min_x+" to "+max_x);
-                    //Debug.Log("y from " + min_y + " to " + max_y);
-
-                    if (self.X>=min_x&& self.X <= max_x&& self.Y >= min_y&& self.Y <= max_y)
-                    {
-                        self.SetEndNode();
-                        Map.Instance.levelMoveNum--;
-                        GameUIManager.Instance.ChangeMoveNum(Map.Instance.levelMoveNum);
-                    }
-                }                
-            }            
-        }      
+    public void OnMouseDown()
+    {             
 
         //点击荷花
         if(self.isFlower==true)
@@ -169,7 +136,7 @@ public class NodeItem : MonoBehaviour
         }
 
         //点击藤蔓
-        if (self.isTree == true)
+        else if (self.isTree == true)
         {
             if (FlowManager.Instance.getTempFlow() == FlowManager.cFlow.choose)
             {
@@ -239,7 +206,7 @@ public class NodeItem : MonoBehaviour
         }
 
         //点击开关
-        if (self.isBox==true)
+        else if (self.isBox==true)
         {
             if (Map.Instance.levelMoveNum > 0)
             {
@@ -250,16 +217,53 @@ public class NodeItem : MonoBehaviour
                 self.BoxSwitch = !self.BoxSwitch;
 
                 if (self.BoxSwitch)
+                {
                     Map.Instance.nodes[self.X, self.Y].SetIsWall(true);
+                    Map.Instance.GameObject_element[self.X, self.Y].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                }
+                    
                 else if (!self.BoxSwitch)
                 {
                     Map.Instance.nodes[self.X, self.Y].SetIsWall(false);
                     Map.Instance.nodes[self.X, self.Y].ReSetNode();
+                    Map.Instance.GameObject_element[self.X, self.Y].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                 }
             }
         }
 
+        //空位角色移动
+        else if (self.isWall == false)
+        {
+            if (FlowManager.Instance.getTempFlow() == FlowManager.cFlow.choose)
+            {
+                if (Map.Instance.levelMoveNum > 0)
+                {
+                    int max_x = Map.Instance.player_x + 2;
+                    int min_x = Map.Instance.player_x - 2;
+                    int max_y = Map.Instance.player_y + 2;
+                    int min_y = Map.Instance.player_y - 2;
+                    if (max_x > 9)
+                        max_x = 9;
+                    if (min_x < 0)
+                        min_x = 0;
+                    if (max_y > 9)
+                        max_y = 9;
+                    if (min_y < 0)
+                        min_y = 0;
 
+                    //Debug.Log("player_x: " + Map.Instance.player_x + " player_y: " + Map.Instance.player_y);
+                    //Debug.Log("x from "+min_x+" to "+max_x);
+                    //Debug.Log("y from " + min_y + " to " + max_y);
+
+                    if (self.X >= min_x && self.X <= max_x && self.Y >= min_y && self.Y <= max_y)
+                    {
+                        self.SetEndNode();
+                        Map.Instance.levelMoveNum--;
+                        GameUIManager.Instance.ChangeMoveNum(Map.Instance.levelMoveNum);
+                    }
+                }
+            }
+        }
     }
 
     //光标变化

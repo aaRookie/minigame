@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
             Map.Instance.player_x = n.X;
             Map.Instance.player_y = n.Y;
             Map.Instance.SetPlayerPosition(n.X, n.Y);
+            Map.Instance.CheckIsWin();
         }
     }
 
