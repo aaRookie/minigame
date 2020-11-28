@@ -78,7 +78,7 @@ public class Map : MonoBehaviour
     void InitMap()
     {
         //LoadLevelData(SelectLevel.Instance.CurrentLevel);
-        LoadLevelData(3);
+        LoadLevelData(4);
 
         player_x = 0;
         player_y = 0;
@@ -190,8 +190,7 @@ public class Map : MonoBehaviour
                 //墙
                 if (MapData[i * Width + j] == 1f)
                 {
-                    GameObject.Instantiate(Prefab_wall, Grid_gameobject[i, j].transform.position+new Vector3(0,0,-0.1f), Quaternion.identity);
-                
+                    GameObject.Instantiate(Prefab_wall, Grid_gameobject[i, j].transform.position+new Vector3(0,0,-0.1f), Quaternion.identity);               
                 }
 
                 //box
@@ -199,10 +198,16 @@ public class Map : MonoBehaviour
                 {
                     GameObject temp=GameObject.Instantiate(Prefab_box, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
                     GameObject_element[i, j] = temp;
-
                     //nodes[i, j].GetNodeItem().OnMouseDown();
                 }
 
+                //藤蔓
+                if (MapData[i * Width + j] >3f&& MapData[i * Width + j] < 4f)
+                {
+                    GameObject temp = GameObject.Instantiate(Prefab_tree, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
+                    GameObject_element[i, j] = temp;
+                    //nodes[i, j].GetNodeItem().OnMouseDown();
+                }
             }
         }
 
