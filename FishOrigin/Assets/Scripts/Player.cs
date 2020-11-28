@@ -45,8 +45,11 @@ public class Player : MonoBehaviour
         {
             Node p = path.Pop();
             if(p != null)
-                StartCoroutine(MoveToNode(p));
+                StartCoroutine(MoveToNode(p));          
         }
+
+        if(path.Count==0)
+        Debug.Log("end");
     }
 
 }

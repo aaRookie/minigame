@@ -9,6 +9,7 @@ public class Map : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+     
     }
 
     public Player player;
@@ -20,21 +21,24 @@ public class Map : MonoBehaviour
 
     public GameObject[,] Grid_gameobject=null;
 
+    public GameObject Prefab_player;
+    public GameObject m_player=null;
+
     public int[] MapData = new int[100];
 
     public int player_x=0;
     public int player_y=0;
-   
-    
-    void Start()
-    {     
+
+    public void Start()
+    {
         InitMap();
     }
 
     //初始化地图
     void InitMap()
     {
-        LoadLevelData(SelectLevel.Instance.CurrentLevel);
+        //LoadLevelData(SelectLevel.Instance.CurrentLevel);
+        LoadLevelData(1);
 
         nodes = new Node[Width, Height];
         Grid_gameobject = new GameObject[Width, Height];
@@ -67,14 +71,15 @@ public class Map : MonoBehaviour
                     //player.SetCurNode(nodes[i, j]);
                     player_x = i;
                     player_y = j;
-                    //Debug.Log(player_x);
-                    //Debug.Log(player_y);
-                    player.SetCurNode(nodes[player_x, player_y]);
+                    
                 }
+                //
                 else if(MapData[i * Width + j] == 3)
                 {
 
                 }
+                //
+                
             }
         }
 
@@ -83,7 +88,13 @@ public class Map : MonoBehaviour
             for (int j = 0; j < Height; j++)
             {
                 Grid_gameobject[i, j] = GameObject.Find("Node(" + i + "," + j + ")").gameObject;
-                //Debug.Log(Grid_gameobject[i, j].name);
+
+                if (i == player_x && j == player_y)
+                {
+                    m_player = GameObject.Instantiate(Prefab_player, Grid_gameobject[i, j].transform.position, Quaternion.identity);
+                    player = m_player.GetComponent<Player>();
+                }
+                    
             }
         }
 
@@ -92,6 +103,8 @@ public class Map : MonoBehaviour
 
     public void SetPlayerPosition(int x,int y)
     {
+        //Debug.Log(player_x);
+        //Debug.Log(player_y);
         player_x = x;
         player_y = y;
         //设置玩家坐标
@@ -103,18 +116,27 @@ public class Map : MonoBehaviour
     //加载关卡数据
     void LoadLevelData(int level)
     {
+        //Debug.Log(level);
         switch (level)
         {
             case 1:
                 MapData = LevelData.Instance.Getlevel1_map();
+                //Debug.Log(level);
                 break;
-
             case 2:
-                MapData = LevelData.Instance.level2_map;
+                MapData = LevelData.Instance.Getlevel2_map();
                 break;
-
             case 3:
-                MapData = LevelData.Instance.level3_map;
+                MapData = LevelData.Instance.Getlevel3_map();
+                break;
+            case 4:
+                MapData = LevelData.Instance.Getlevel4_map();
+                break;
+            case 5:
+                MapData = LevelData.Instance.Getlevel5_map();
+                break;
+            case 6:
+                MapData = LevelData.Instance.Getlevel6_map();
                 break;
         }
 

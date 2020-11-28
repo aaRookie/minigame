@@ -16,8 +16,8 @@ public class StartSceneManger : MonoBehaviour
     void Start()
     {
         level1.onClick.AddListener(button1);
-        level1.onClick.AddListener(button2);
-        level1.onClick.AddListener(button3);
+        level2.onClick.AddListener(button2);
+        level3.onClick.AddListener(button3);
     }
 
     

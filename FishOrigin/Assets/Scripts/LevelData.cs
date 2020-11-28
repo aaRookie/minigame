@@ -16,8 +16,35 @@ public class LevelData : MonoBehaviour
         return level1_map;
     }
 
+    public int[] Getlevel2_map()
+    {
+        return level2_map;
+    }
+
+    public int[] Getlevel3_map()
+    {
+        return level3_map;
+    }
+
+    public int[] Getlevel4_map()
+    {
+        return level4_map;
+    }
+
+    public int[] Getlevel5_map()
+    {
+        return level5_map;
+    }
+
+    public int[] Getlevel6_map()
+    {
+        return level6_map;
+    }
+
+    //bug,第一格必须为0
+
     [HideInInspector]
-    private int[] level1_map = new int[100] { 1, 0, 0, 0, 2, 0, 0, 0, 0, 0,
+    private int[] level1_map = new int[100] {1, 0, 0, 0, 2, 0, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -29,7 +56,7 @@ public class LevelData : MonoBehaviour
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     [HideInInspector]
-    public int[] level2_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    private int[] level2_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -41,7 +68,7 @@ public class LevelData : MonoBehaviour
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     [HideInInspector]
-    public int[] level3_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    private int[] level3_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -53,7 +80,7 @@ public class LevelData : MonoBehaviour
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     [HideInInspector]
-    public int[] level4_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    private int[] level4_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -65,7 +92,7 @@ public class LevelData : MonoBehaviour
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     [HideInInspector]
-    public int[] level5_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    private int[] level5_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -77,7 +104,7 @@ public class LevelData : MonoBehaviour
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     
     [HideInInspector]
-    public int[] level6_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    private int[] level6_map = new int[100] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                                1, 0, 0, 0, 0, 0, 0, 0, 0, 0,

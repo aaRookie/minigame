@@ -53,7 +53,7 @@ public class Node
     void CreateNode()
     {
         GameObject node = GameObject.Instantiate(Resources.Load("grid"), GameObject.Find("Map").transform) as GameObject;
-        node.transform.position = new Vector3(this.X + 0.5f, 9.5f-this.Y, 0f);
+        node.transform.position = new Vector3(this.Y + 0.5f, 9.5f-this.X, 0f);
         //Debug.Log(node.transform.position);
 
         node.transform.name = "Node(" + X + "," + Y + ")";
