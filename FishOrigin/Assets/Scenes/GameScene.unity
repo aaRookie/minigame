@@ -1158,11 +1158,11 @@ MonoBehaviour:
     type: 3}
   Prefab_wall: {fileID: 1330653995925603573, guid: adf0e373990db4b4fafa0a5c090cc54b,
     type: 3}
-  Prefab_end: {fileID: 1330653995925603573, guid: 25a20d2986e95e448a2ba01ac7d209f4,
+  Prefab_end: {fileID: 1330653995925603573, guid: 8406aeacbd509954f814106876a268dd,
     type: 3}
   Prefab_tree: {fileID: 1330653995925603573, guid: eb3e9108060b8ce44a82663da4211137,
     type: 3}
-  Prefab_box: {fileID: 1330653995925603573, guid: 8406aeacbd509954f814106876a268dd,
+  Prefab_box: {fileID: 1330653995925603573, guid: 25a20d2986e95e448a2ba01ac7d209f4,
     type: 3}
   m_player: {fileID: 0}
   m_end: {fileID: 1330653995925603573, guid: 25a20d2986e95e448a2ba01ac7d209f4, type: 3}
