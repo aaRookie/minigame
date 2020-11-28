@@ -12,6 +12,11 @@ public class NodeItem : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if(self.isWall==false)
         self.SetEndNode();
+        else
+        {
+            Debug.Log("iswall");
+        }
     }
 }

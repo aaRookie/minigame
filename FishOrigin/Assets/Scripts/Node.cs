@@ -10,7 +10,8 @@ public class Node
     public float G = 0;
     public float H = 0;
 
-    public bool isWall; //是否障碍
+    //是否阻挡
+    public bool isWall; 
 
     public Node parent;
     public Map map;
@@ -49,7 +50,9 @@ public class Node
     void CreateNode()
     {
         GameObject node = GameObject.Instantiate(Resources.Load("grid"), GameObject.Find("Map").transform) as GameObject;
-        node.transform.position = new Vector3(this.X + 0.5f, this.Y + 0.5f, 0f);
+        node.transform.position = new Vector3(this.X + 0.5f, 9.5f-this.Y, 0f);
+        //Debug.Log(node.transform.position);
+
         node.transform.name = "Node(" + X + "," + Y + ")";
         nodeRender = node.GetComponent<Renderer>();
 

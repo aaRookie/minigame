@@ -7,8 +7,8 @@ public class Map : MonoBehaviour
     public Player player;
     public AStar Astarpath;
 
-    public int Height = 4;
-    public int Width = 4;
+    public int Height = 10;
+    public int Width = 10;
     public Node[,] nodes;
    
     
