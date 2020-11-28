@@ -14,7 +14,6 @@ public class NodeItem : MonoBehaviour
 
     public void OnMouseDown()
     {             
-
         //点击荷花
         if(self.isFlower==true)
         {
@@ -159,6 +158,16 @@ public class NodeItem : MonoBehaviour
                             for (int i = 1; i <= self.ChangeX; i++)
                             {
                                 influ.Add(new Vector2(self.X - i, self.Y));
+
+                                float temp1 = Map.Instance.MapData[(self.X - i-1) * 10 + self.Y];
+                                float temp2 = Map.Instance.MapData[(self.X-1) * 10 + self.Y];
+
+                                Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y]= temp2;
+                                Map.Instance.MapData[(self.X - 1) * 10 + self.Y] = temp1;
+                                Map.Instance.GameObject_element[self.X-1, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X - i - 1, self.Y].transform.position;
+
+                                Debug.Log(Map.Instance.MapData[(self.X - 1) * 10 + self.Y]);
+                                Debug.Log(Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y]);
                             }
                         }
                         if (self.ChangeDir == 2)
@@ -166,6 +175,13 @@ public class NodeItem : MonoBehaviour
                             for (int i = 1; i <= self.ChangeX; i++)
                             {
                                 influ.Add(new Vector2(self.X + i, self.Y));
+
+                                float temp1 = Map.Instance.MapData[(self.X + i + 1) * 10 + self.Y];
+                                float temp2 = Map.Instance.MapData[(self.X + 1) * 10 + self.Y];
+
+                                Map.Instance.MapData[(self.X + i + 1) * 10 + self.Y] = temp2;
+                                Map.Instance.MapData[(self.X + 1) * 10 + self.Y] = temp1;
+                                Map.Instance.GameObject_element[self.X + 1, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X + i + 1, self.Y].transform.position;
                             }
                         }
                         if (self.ChangeDir == 3)
@@ -173,6 +189,13 @@ public class NodeItem : MonoBehaviour
                             for (int i = 1; i <= self.ChangeX; i++)
                             {
                                 influ.Add(new Vector2(self.X, self.Y - i));
+
+                                float temp1 = Map.Instance.MapData[self.X * 10 + (self.Y-i-1)];
+                                float temp2 = Map.Instance.MapData[self.X * 10 + self.Y-i];
+
+                                Map.Instance.MapData[self.X * 10 + (self.Y - i - 1)] = temp2;
+                                Map.Instance.MapData[self.X * 10 + self.Y - i] = temp1;
+                                Map.Instance.GameObject_element[self.X, self.Y-1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y-i-1].transform.position;
                             }
                         }
                         if (self.ChangeDir == 4)
@@ -180,6 +203,13 @@ public class NodeItem : MonoBehaviour
                             for (int i = 1; i <= self.ChangeX; i++)
                             {
                                 influ.Add(new Vector2(self.X, self.Y + i));
+
+                                float temp1 = Map.Instance.MapData[self.X * 10 + (self.Y + i + 1)];
+                                float temp2 = Map.Instance.MapData[self.X * 10 + self.Y + i];
+
+                                Map.Instance.MapData[self.X * 10 + (self.Y + i + 1)] = temp2;
+                                Map.Instance.MapData[self.X * 10 + self.Y + i] = temp1;
+                                Map.Instance.GameObject_element[self.X, self.Y + 1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y + i + 1].transform.position;
                             }
                         }                        
                     }
@@ -216,13 +246,13 @@ public class NodeItem : MonoBehaviour
 
                 self.BoxSwitch = !self.BoxSwitch;
 
-                if (self.BoxSwitch)
+                if (!self.BoxSwitch)
                 {
                     Map.Instance.nodes[self.X, self.Y].SetIsWall(true);
                     Map.Instance.GameObject_element[self.X, self.Y].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 }
                     
-                else if (!self.BoxSwitch)
+                else if (self.BoxSwitch)
                 {
                     Map.Instance.nodes[self.X, self.Y].SetIsWall(false);
                     Map.Instance.nodes[self.X, self.Y].ReSetNode();

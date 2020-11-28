@@ -75,7 +75,7 @@ public class Node
     public void SetIsBox(bool box)
     {
         isBox = box;
-        if (isBox) { nodeRender.material.SetColor("_Color", Color.yellow); }
+        //if (isBox) { nodeRender.material.SetColor("_Color", Color.yellow); }
     }
 
     //设置镜子
