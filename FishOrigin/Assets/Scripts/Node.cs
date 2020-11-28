@@ -19,12 +19,18 @@ public class Node
     //镜子
     public bool isMirror = false;
 
+    public bool FlowerSwitch = false;
+    public bool TreeSwitch = false;
+    public bool MirrorSwitch = false;
+
     public Node parent;
     public Map map;
     private Renderer nodeRender;
     private NodeItem nodeItem;
 
-    float ChangeX = 0f;
+    public int ChangeDir = 0;
+    public int ChangeX = 0;
+    public int ChangeY = 0;
 
 
     public Node(int x, int y, Node parent = null)

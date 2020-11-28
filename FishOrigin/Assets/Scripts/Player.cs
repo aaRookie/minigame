@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 
         if (path.Count > 0)
         {
+            FlowManager.Instance.ChangeToMove();
             Node p = path.Pop();
             if(p != null)
                 StartCoroutine(MoveToNode(p));          
@@ -50,10 +51,17 @@ public class Player : MonoBehaviour
 
         if (path.Count == 0)
         {
+            StartCoroutine(ReturnToChoose());
             Map.Instance.player_x = n.X;
             Map.Instance.player_y = n.Y;
             Map.Instance.SetPlayerPosition(n.X, n.Y);
         }
+    }
+
+    IEnumerator ReturnToChoose()
+    {
+        yield return new WaitForSeconds(0.4f);
+        FlowManager.Instance.ChangeToChoose();
     }
 
 }

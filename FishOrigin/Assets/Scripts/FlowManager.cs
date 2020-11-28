@@ -33,6 +33,21 @@ public class FlowManager : MonoBehaviour
         }
     }
 
+    public void ChangeToMove()
+    {
+        tempFlow = cFlow.move;
+    }
+
+    public void ChangeToChoose()
+    {
+        tempFlow = cFlow.choose;
+    }
+
+    public void ChangeToDead()
+    {
+        tempFlow = cFlow.dead;
+    }
+
     public void ResetFlow()
     {
         tempFlow = cFlow.pause;

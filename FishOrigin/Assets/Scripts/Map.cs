@@ -89,12 +89,30 @@ public class Map : MonoBehaviour
                 {
                     nodes[i, j].SetIsWall(true);
                     nodes[i, j].SetIsFlower(true);
+
+                    float temp = MapData[i * Width + j];
+                    temp *= 10;
+                    nodes[i,j].ChangeDir= (int)temp % 10;
+                    temp *= 10;
+                    nodes[i, j].ChangeX = (int)temp % 10;
+                    //temp *= 10;
+                    //nodes[i, j].ChangeY = (int)temp % 10;
+
+                    //Debug.Log("ChangeDir: " + nodes[i, j].ChangeDir + " ChangeX: " + nodes[i, j].ChangeX + " ChangeY: " + nodes[i, j].ChangeY);
                 }
                 //藤蔓
                 else if (MapData[i * Width + j] >= 3f && MapData[i * Width + j] < 4)
                 {
                     nodes[i, j].SetIsWall(true);
                     nodes[i, j].SetIsTree(true);
+
+                    float temp = MapData[i * Width + j];
+                    temp *= 10;
+                    nodes[i, j].ChangeDir = (int)temp % 10;
+                    temp *= 10;
+                    nodes[i, j].ChangeX = (int)temp % 10;
+                    //temp *= 10;
+                    //nodes[i, j].ChangeY = (int)temp % 10;
                 }
                 //敌人
                 else if (MapData[i * Width + j] == 4)
