@@ -19,12 +19,12 @@ public class Node
     //镜子
     public bool isMirror = false;
 
-
-
     public Node parent;
     public Map map;
     private Renderer nodeRender;
     private NodeItem nodeItem;
+
+    float ChangeX = 0f;
 
 
     public Node(int x, int y, Node parent = null)
@@ -45,19 +45,19 @@ public class Node
         if (isWall) { nodeRender.material.SetColor("_Color", Color.black); }
     }
 
-    //设置藤蔓
-    public void SetIsTree(bool tree)
-    {
-        isTree = tree;
-        if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
-    }
-
     //设置荷花
     public void SetIsFlower(bool flower)
     {
         isFlower = flower;
         if (isFlower) { nodeRender.material.SetColor("_Color", Color.blue); }
     }
+
+    //设置藤蔓
+    public void SetIsTree(bool tree)
+    {
+        isTree = tree;
+        if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
+    }   
 
     //设置镜子
     public void SetIsMirror(bool mirror)

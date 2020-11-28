@@ -12,7 +12,7 @@ public class NodeItem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //角色移动
+        //空位角色移动
         if(self.isWall==false)
         {
             if(FlowManager.Instance.getTempFlow()==FlowManager.cFlow.choose)

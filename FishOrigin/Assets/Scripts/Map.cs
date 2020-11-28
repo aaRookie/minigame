@@ -23,7 +23,7 @@ public class Map : MonoBehaviour
     public GameObject Prefab_player;
     public GameObject m_player=null;
 
-    public int[] MapData = new int[100];
+    public float[] MapData = new float[100];
     public int levelMoveNum = 0;
 
     public int player_x=0;
@@ -75,23 +75,23 @@ public class Map : MonoBehaviour
 
                 //if()
                 //空闲
-                if(MapData[i*Width+j]==0)
+                if(MapData[i*Width+j]==0f)
                 {
                     nodes[i, j].SetIsWall(false);
                 }
                 //石头
-                else if (MapData[i * Width + j] == 1)
+                else if (MapData[i * Width + j] ==1f)
                 {
                     nodes[i, j].SetIsWall(true);
                 }               
                 //荷花
-                else if(MapData[i * Width + j] == 2)
+                else if(MapData[i * Width + j] >=2f&& MapData[i * Width + j] <3)
                 {
                     nodes[i, j].SetIsWall(true);
                     nodes[i, j].SetIsFlower(true);
                 }
                 //藤蔓
-                else if (MapData[i * Width + j] == 3)
+                else if (MapData[i * Width + j] >= 3f && MapData[i * Width + j] < 4)
                 {
                     nodes[i, j].SetIsWall(true);
                     nodes[i, j].SetIsTree(true);
