@@ -55,6 +55,8 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
         }
 
+        Map.Instance.m_player.GetComponent<Animator>().SetBool("move", true);
+
         transform.DOMove(n.GetNodeItem().transform.position + new Vector3(0, 0, -0.1f),0.5f);
         //transform.position = n.GetNodeItem().transform.position+new Vector3(0,0,-0.1f);
         yield return new WaitForSeconds(0.5f);
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
         {
             path.Clear();
             FlowManager.Instance.ChangeToChoose();
+            Map.Instance.m_player.GetComponent<Animator>().SetBool("move", false);
         }
 
         if (path.Count == 0)
@@ -80,6 +83,7 @@ public class Player : MonoBehaviour
             Map.Instance.player_x = n.X;
             Map.Instance.player_y = n.Y;
             Map.Instance.SetPlayerPosition(n.X, n.Y);
+            Map.Instance.m_player.GetComponent<Animator>().SetBool("move", false);
             Map.Instance.CheckIsWin();
         }
     }

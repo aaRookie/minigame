@@ -28,6 +28,8 @@ public class Map : MonoBehaviour
     public GameObject Prefab_tree;
     public GameObject Prefab_box;
 
+    
+
 
     public GameObject m_player=null;
     public GameObject m_end = null;
@@ -64,6 +66,8 @@ public class Map : MonoBehaviour
         m_player = null;
         InitMap();
     }
+
+    
 
     public void CheckIsWin()
     {

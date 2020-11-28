@@ -20,12 +20,6 @@ public class StartSceneManger : MonoBehaviour
         level3.onClick.AddListener(button3);
     }
 
-    
-    void Update()
-    {
-        
-    }
-
     void button1()
     {
         SelectLevel.Instance.CurrentLevel = 1;
