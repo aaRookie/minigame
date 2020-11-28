@@ -6,9 +6,34 @@ public class LevelData : MonoBehaviour
 {
     public static LevelData Instance = null;
 
+
+    private int Level1MoveNum = 3;
+    private int Level2MoveNum = 3;
+    private int Level3MoveNum = 3;
+    private int Level4MoveNum = 3;
+    private int Level5MoveNum = 3;
+    private int Level6MoveNum = 3;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    public int GetLevelMoveNum(int i)
+    {
+        if (i == 1)
+            return Level1MoveNum;
+        else if (i == 2)
+            return Level2MoveNum;
+        else if (i == 3)
+            return Level3MoveNum;
+        else if (i == 4)
+            return Level4MoveNum;
+        else if (i == 5)
+            return Level5MoveNum;
+        else if (i == 6)
+            return Level6MoveNum;
+        else return 1;
     }
 
     public int[] Getlevel1_map()

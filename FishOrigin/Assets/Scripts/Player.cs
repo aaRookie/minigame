@@ -48,8 +48,12 @@ public class Player : MonoBehaviour
                 StartCoroutine(MoveToNode(p));          
         }
 
-        if(path.Count==0)
-        Debug.Log("end");
+        if (path.Count == 0)
+        {
+            Map.Instance.player_x = n.X;
+            Map.Instance.player_y = n.Y;
+            Map.Instance.SetPlayerPosition(n.X, n.Y);
+        }
     }
 
 }

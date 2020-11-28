@@ -8,8 +8,7 @@ public class Map : MonoBehaviour
 
     public void Awake()
     {
-        Instance = this;
-     
+        Instance = this;    
     }
 
     public Player player;
@@ -25,6 +24,7 @@ public class Map : MonoBehaviour
     public GameObject m_player=null;
 
     public int[] MapData = new int[100];
+    public int levelMoveNum = 0;
 
     public int player_x=0;
     public int player_y=0;
@@ -34,11 +34,30 @@ public class Map : MonoBehaviour
         InitMap();
     }
 
+    public void ResetMap()
+    {
+        Destroy(m_player);
+
+        for (int i = 0; i < Width; i++)
+        {
+            for (int j = 0; j < Height; j++)
+            {
+                Destroy(Grid_gameobject[i, j]);
+                Grid_gameobject[i, j] = null;
+            }
+        }
+        m_player = null;
+        InitMap();
+    }
+
     //初始化地图
     void InitMap()
     {
         //LoadLevelData(SelectLevel.Instance.CurrentLevel);
         LoadLevelData(1);
+
+        player_x = 0;
+        player_y = 0;
 
         nodes = new Node[Width, Height];
         Grid_gameobject = new GameObject[Width, Height];
@@ -99,8 +118,11 @@ public class Map : MonoBehaviour
         }
 
         SetPlayerPosition(player_x, player_y);
+        //Debug.Log(levelMoveNum);
+        GameUIManager.Instance.ChangeMoveNum(levelMoveNum);
     }
 
+    //设置玩家位置
     public void SetPlayerPosition(int x,int y)
     {
         //Debug.Log(player_x);
@@ -110,6 +132,7 @@ public class Map : MonoBehaviour
         //设置玩家坐标
         player.SetCurNode(nodes[player_x, player_y]);
         //设置图片位置
+        if(Grid_gameobject[player_x, player_y])
         player.transform.position = Grid_gameobject[player_x, player_y].transform.position + new Vector3(0, 0, -0.1f);
     }
 
@@ -121,22 +144,28 @@ public class Map : MonoBehaviour
         {
             case 1:
                 MapData = LevelData.Instance.Getlevel1_map();
-                //Debug.Log(level);
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(1);
+                //Debug.Log(LevelData.Instance.Level1MoveNum);
                 break;
             case 2:
                 MapData = LevelData.Instance.Getlevel2_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(2);
                 break;
             case 3:
                 MapData = LevelData.Instance.Getlevel3_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(3);
                 break;
             case 4:
                 MapData = LevelData.Instance.Getlevel4_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(4);
                 break;
             case 5:
                 MapData = LevelData.Instance.Getlevel5_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(5);
                 break;
             case 6:
                 MapData = LevelData.Instance.Getlevel6_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(6);
                 break;
         }
 
@@ -154,18 +183,18 @@ public class Map : MonoBehaviour
         player.MoveToEnd(end);
     }
 
-    //重新随机一下Map
-    public void ReSetMap()
-    {
-        foreach (Node item in nodes)
-        {
-            item.ReSetNode();
-            if (item.X == player.GetCurNode().X && item.Y == player.GetCurNode().Y)
-                continue;
-            bool wall = Random.Range(0,10) > 7f;
-            item.SetIsWall(wall);
-        }  
-    }
+    ////重新随机一下Map
+    //public void ReSetMap()
+    //{
+    //    foreach (Node item in nodes)
+    //    {
+    //        item.ReSetNode();
+    //        if (item.X == player.GetCurNode().X && item.Y == player.GetCurNode().Y)
+    //            continue;
+    //        bool wall = Random.Range(0,10) > 7f;
+    //        item.SetIsWall(wall);
+    //    }  
+    //}
 
     public void ReFind()
     {

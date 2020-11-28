@@ -10,11 +10,16 @@ public class Node
     public float G = 0;
     public float H = 0;
 
-    //是否阻挡
-    public bool isWall;
+    //墙
+    public bool isWall=false;
+    //石头
+    public bool isStone = false;
+    //藤蔓
+    public bool isTree = false;
+    //镜子
+    public bool isMirror = false;
 
-    //是否成长
-    public bool isGrow;
+
 
     public Node parent;
     public Map map;
@@ -33,10 +38,32 @@ public class Node
         CreateNode();
     }
 
+    //设置墙
     public void SetIsWall(bool wall)
     {
         isWall = wall;
         if (isWall) { nodeRender.material.SetColor("_Color", Color.black); }
+    }
+
+    //设置藤蔓
+    public void SetIsTree(bool tree)
+    {
+        isTree = tree;
+        if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
+    }
+
+    //设置石头
+    public void SetIsStone(bool Stone)
+    {
+        isStone = Stone;
+        if (isStone) { nodeRender.material.SetColor("_Color", Color.green); }
+    }
+
+    //设置镜子
+    public void SetIsMirror(bool mirror)
+    {
+        isMirror = mirror;
+        if (isMirror) { nodeRender.material.SetColor("_Color", Color.green); }
     }
 
     public void SetParent(Node p)
