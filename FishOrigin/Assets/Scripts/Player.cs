@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void fun2()
+    void fun3()
     {
 
     }
