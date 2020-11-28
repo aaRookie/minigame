@@ -11,7 +11,10 @@ public class Node
     public float H = 0;
 
     //是否阻挡
-    public bool isWall; 
+    public bool isWall;
+
+    //是否成长
+    public bool isGrow;
 
     public Node parent;
     public Map map;

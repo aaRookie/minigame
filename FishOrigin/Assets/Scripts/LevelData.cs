@@ -11,8 +11,13 @@ public class LevelData : MonoBehaviour
         Instance = this;
     }
 
+    public int[] Getlevel1_map()
+    {
+        return level1_map;
+    }
+
     [HideInInspector]
-    public int[] level1_map = new int[100] { 1, 0, 0, 0, 2, 0, 0, 0, 0, 0,
+    private int[] level1_map = new int[100] { 1, 0, 0, 0, 2, 0, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                              1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
