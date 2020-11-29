@@ -12,6 +12,10 @@ public class StartSceneManger : MonoBehaviour
     public Button level4;
     public Button level5;
     public Button level6;
+    public Button level7;
+    public Button level8;
+    public Button level9;
+    public Button level10;
 
     void Start()
     {
@@ -21,6 +25,10 @@ public class StartSceneManger : MonoBehaviour
         level4.onClick.AddListener(button4);
         level5.onClick.AddListener(button5);
         level6.onClick.AddListener(button6);
+        level7.onClick.AddListener(button7);
+        level8.onClick.AddListener(button8);
+        level9.onClick.AddListener(button9);
+        level10.onClick.AddListener(button10);
     }
 
     void button1()
@@ -56,6 +64,30 @@ public class StartSceneManger : MonoBehaviour
     void button6()
     {
         SelectLevel.Instance.CurrentLevel = 6;
+        StartCoroutine(LoadGameScene());
+    }
+
+    void button7()
+    {
+        SelectLevel.Instance.CurrentLevel = 7;
+        StartCoroutine(LoadGameScene());
+    }
+
+    void button8()
+    {
+        SelectLevel.Instance.CurrentLevel = 8;
+        StartCoroutine(LoadGameScene());
+    }
+
+    void button9()
+    {
+        SelectLevel.Instance.CurrentLevel = 9;
+        StartCoroutine(LoadGameScene());
+    }
+
+    void button10()
+    {
+        SelectLevel.Instance.CurrentLevel = 10;
         StartCoroutine(LoadGameScene());
     }
 

@@ -103,8 +103,8 @@ public class Map : MonoBehaviour
     //初始化地图
     void InitMap()
     {
-        //LoadLevelData(SelectLevel.Instance.CurrentLevel);
-        LoadLevelData(7);
+        LoadLevelData(SelectLevel.Instance.CurrentLevel);
+        //LoadLevelData(7);
 
         player_x = 0;
         player_y = 0;

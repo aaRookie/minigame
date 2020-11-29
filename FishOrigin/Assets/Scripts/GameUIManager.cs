@@ -21,6 +21,9 @@ public class GameUIManager : MonoBehaviour
     public GameObject m_left;
     public GameObject m_right;
 
+    public Button replayButton;
+    public Button returnButton;
+
     public GameObject Prefab_bowen;
 
     public Texture2D mouseDefault;
@@ -54,7 +57,8 @@ public class GameUIManager : MonoBehaviour
 
     void Start()
     {
-
+        replayButton.onClick.AddListener(FlowManager.Instance.ResetGame);
+        returnButton.onClick.AddListener(FlowManager.Instance.WinFun);
     }
 
     //退出动画

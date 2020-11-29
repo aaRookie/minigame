@@ -91,6 +91,7 @@ public class FlowManager : MonoBehaviour
 
     public void WinFun()
     {
+        Map.Instance.m_player.transform.localScale = Vector3.zero;
         GameUIManager.Instance.HideGamePanel();
         StartCoroutine(LoadLevelScene());
     }
