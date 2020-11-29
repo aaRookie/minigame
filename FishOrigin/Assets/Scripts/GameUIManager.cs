@@ -29,6 +29,7 @@ public class GameUIManager : MonoBehaviour
     public Texture2D mouseDefault;
     public Texture2D mouseInFish;
     public Texture2D mouseOutFish;
+    public Texture2D mouseHand;
 
     public void Awake()
     {
@@ -78,6 +79,11 @@ public class GameUIManager : MonoBehaviour
     public void ChangeMousetToOutFish()
     {
         Cursor.SetCursor(mouseOutFish, Vector2.zero, CursorMode.Auto);
+    }
+
+    public void ChangeMousetToOpera()
+    {
+        Cursor.SetCursor(mouseHand, Vector2.zero, CursorMode.Auto);
     }
 
     void Start()

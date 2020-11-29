@@ -168,7 +168,7 @@ public class NodeItem : MonoBehaviour
                                     //为box时修复
                                     if (Map.Instance.nodes[self.X - i, self.Y].temptype == Node.nodetype.box)
                                     {
-                                        Debug.Log("tuibox");
+                                        //Debug.Log("tuibox");
                                         Map.Instance.nodes[self.X - i - 1, self.Y].isWall = Map.Instance.nodes[self.X - i, self.Y].isWall;
                                     }
                                     else if(Map.Instance.nodes[self.X - i, self.Y].temptype == Node.nodetype.danger)
@@ -485,16 +485,17 @@ public class NodeItem : MonoBehaviour
                 GameUIManager.Instance.ChangeMousetToInFish();
             }
             else
-            GameUIManager.Instance.ChangeMouseToDefault();
+            GameUIManager.Instance.ChangeMousetToOutFish();
         }
-
-
 
         if (self.temptype == Node.nodetype.box|| self.temptype == Node.nodetype.flower|| self.temptype == Node.nodetype.tree)
         {
-            GameUIManager.Instance.ChangeMousetToInFish();
+            GameUIManager.Instance.ChangeMousetToOpera();
         }
+    }
 
-
+    private void OnMouseExit()
+    {
+        GameUIManager.Instance.ChangeMouseToDefault();
     }
 }
