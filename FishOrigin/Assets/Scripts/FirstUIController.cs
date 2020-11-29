@@ -38,7 +38,7 @@ public class FirstUIController : MonoBehaviour
         {
             if(TempTime>6f)
             {
-                SceneManager.LoadScene(1);
+                StartCoroutine(LoadNextScene());
             }
 
             if(m_white.transform.localScale==Vector3.one)
@@ -74,5 +74,23 @@ public class FirstUIController : MonoBehaviour
         //yield return new WaitForSeconds(0.8f);
         //m_grass5.GetComponent<Image>().DOFade(1, 0.5f);
 
+    }
+
+    IEnumerator LoadNextScene()
+    {
+
+        m_yellowback.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_grass4.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_grass2.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_grass1.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_grass3.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_tree3.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_tree5.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_tree1.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_tree2.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_tree4.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        m_grass5.transform.DOScale(new Vector3(1.32f, 1.33f, 1.32f), 1f);
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(1);
     }
 }
