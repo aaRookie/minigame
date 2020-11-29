@@ -38,6 +38,27 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveToNode(Node n)
     {
+        bool canmove = true;
+
+        Debug.Log("playerx: "+Map.Instance.player_x+" playery: "+ Map.Instance.player_y);
+        Debug.Log("nx: " + n.X + " ny: " + n.Y);
+
+        if (path.Count == 0)
+        {
+
+            if (Mathf.Abs(n.X - Map.Instance.player_x) + Mathf.Abs(n.Y - Map.Instance.player_y) >= 2)
+            {
+                canmove = false;
+                //path.Clear();
+            }
+            else
+                canmove = true;
+
+            Map.Instance.m_player.GetComponent<Animator>().SetBool("move", false);
+            Map.Instance.CheckIsWin();
+        }
+
+        //动画朝向
         if (n.GetNodeItem().transform.position.y < transform.position.y)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
@@ -54,21 +75,34 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
         }
-
+        
         Map.Instance.m_player.GetComponent<Animator>().SetBool("move", true);
 
-        transform.DOMove(n.GetNodeItem().transform.position + new Vector3(0, 0, -0.1f),0.5f);
+        if (canmove)
+        {
+            transform.DOMove(n.GetNodeItem().transform.position + new Vector3(0, 0, -0.1f), 0.5f);
+            yield return new WaitForSeconds(0.5f);
+            curNode = n;
+            n.ReSetNormalNode();
+        }
+            
         //transform.position = n.GetNodeItem().transform.position+new Vector3(0,0,-0.1f);
-        yield return new WaitForSeconds(0.5f);
-        curNode = n;
-        n.ReSetNormalNode();
+        
+
+        //Debug.Log(path.Count);
 
         if (path.Count > 0&&path.Count <= 4)
         {
             FlowManager.Instance.ChangeToMove();
             Node p = path.Pop();
             if(p != null)
+            {
+                Map.Instance.player_x = n.X;
+                Map.Instance.player_y = n.Y;
+                Map.Instance.SetPlayerPosition(n.X, n.Y);
                 StartCoroutine(MoveToNode(p));
+            }
+                
         }
         if(path.Count>4)
         {
@@ -80,12 +114,27 @@ public class Player : MonoBehaviour
         if (path.Count == 0)
         {
             StartCoroutine(ReturnToChoose());
-            Map.Instance.player_x = n.X;
-            Map.Instance.player_y = n.Y;
-            Map.Instance.SetPlayerPosition(n.X, n.Y);
+
+            //Debug.Log(n.X + " +" + n.Y);
+            //Debug.Log(transform.position.y + " +" + transform.position.y);
+
+            if (canmove)
+            {
+                Map.Instance.player_x = n.X;
+                Map.Instance.player_y = n.Y;
+                Map.Instance.SetPlayerPosition(n.X, n.Y);
+             }
+          //  else
+           // {
+                //path.Clear();
+           // }
+            
             Map.Instance.m_player.GetComponent<Animator>().SetBool("move", false);
             Map.Instance.CheckIsWin();
         }
+
+        //Debug.Log(Map.Instance.player_x);
+        //Debug.Log(Map.Instance.player_y);
     }
 
     IEnumerator ReturnToChoose()
