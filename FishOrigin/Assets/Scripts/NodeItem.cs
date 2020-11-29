@@ -143,8 +143,8 @@ public class NodeItem : MonoBehaviour
                                     influ.Add(new Vector2(self.X - i, self.Y));
 
                                     //播放生长动画
+                                    Map.Instance.GameObject_element[self.X, self.Y].GetComponent<Animator>().SetBool("zhang", true);
 
-                                    
                                     //移动gameoject
                                     Map.Instance.GameObject_element[self.X - i, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X - i - 1, self.Y].transform.position;
                                     //更新列表gameobject

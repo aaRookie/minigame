@@ -108,7 +108,7 @@ public class Node
     {
         isTree = tree;
         temptype = nodetype.tree;
-        if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
+        //if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
     }  
     
     //box
