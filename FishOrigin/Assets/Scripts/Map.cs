@@ -100,7 +100,7 @@ public class Map : MonoBehaviour
     void InitMap()
     {
         //LoadLevelData(SelectLevel.Instance.CurrentLevel);
-        LoadLevelData(5);
+        LoadLevelData(6);
 
         player_x = 0;
         player_y = 0;

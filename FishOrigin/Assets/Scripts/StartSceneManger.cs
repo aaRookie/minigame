@@ -61,7 +61,7 @@ public class StartSceneManger : MonoBehaviour
 
     IEnumerator LoadGameScene()
     {
-        GameUIManager.Instance.HideGamePanel();
+        SelectUIManager.Instance.HideGamePanel();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("GameScene");
     }

@@ -80,7 +80,7 @@ public class FlowManager : MonoBehaviour
     {
         //过场动画后转化为pause
         tempFlow = cFlow.choose;
-        Map.Instance.ResetMap();
+        //Map.Instance.ResetMap();
 
         GameUIManager.Instance.HideGamePanel();
         StartCoroutine(LoadCurrentScene());
