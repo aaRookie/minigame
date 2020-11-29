@@ -16,6 +16,8 @@ public class GameUIManager : MonoBehaviour
     public Sprite right3;
     public Sprite right4;
 
+    public Sprite[] numImage = new Sprite[12];
+
     public GameObject m_left;
     public GameObject m_right;
 
@@ -29,6 +31,7 @@ public class GameUIManager : MonoBehaviour
     }
 
     public Text m_movenum;
+    public GameObject m_numImage;
 
     void Start()
     {
@@ -54,6 +57,42 @@ public class GameUIManager : MonoBehaviour
     public void ChangeMoveNum(int i)
     {
         m_movenum.text = i.ToString();
+        switch(i)
+        {
+            case 1:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 2:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 3:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 4:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 5:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 6:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 7:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 8:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 9:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 10:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+            case 11:
+                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                break;
+        }
     }
 
 
