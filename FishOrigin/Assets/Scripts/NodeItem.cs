@@ -156,6 +156,13 @@ public class NodeItem : MonoBehaviour
                                     Debug.Log(Map.Instance.nodes[self.X - i, self.Y].isWall);
 
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y, self.X - i - 1, self.Y);
+
+                                    //为box时修复
+                                    if (Map.Instance.nodes[self.X - i, self.Y].temptype == Node.nodetype.box)
+                                    {
+                                        if (Map.Instance.nodes[self.X - i - 1, self.Y].isWall = Map.Instance.nodes[self.X - i, self.Y].isWall) ;
+                                    }
+
                                     Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].isWall);
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y,false);
                                     Map.Instance.nodes[self.X - i, self.Y].temptype = Node.nodetype.zero;
