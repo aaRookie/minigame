@@ -66,13 +66,23 @@ public class Node
     public void SetType()
     {
         if (temptype == nodetype.tree)
+        {
             SetIsTree(isTree);
+        }
         else if (temptype == nodetype.box)
+        {
             SetIsBox(isBox);
+        }
         else if (temptype == nodetype.danger)
+        {
             SetIsDanger(isDanger);
+        }
+            //SetIsDanger(isDanger);
         else if (temptype == nodetype.flower)
+        {
             SetIsFlower(isFlower);
+        }
+            //SetIsFlower(isFlower);
     }
 
     //设置墙
@@ -118,6 +128,7 @@ public class Node
     {
         isBox = box;
         temptype = nodetype.box;
+        ChangeToWall(isBox);
         //if(isBox)
         //    temptype = nodetype.box;
         //else

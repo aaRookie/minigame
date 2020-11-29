@@ -153,9 +153,14 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - i, self.Y];
                                     Map.Instance.GameObject_element[self.X - i, self.Y] = null;
                                     //更新node
+                                    Debug.Log(Map.Instance.nodes[self.X - i, self.Y].isWall);
+
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y, self.X - i - 1, self.Y);
+                                    Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].isWall);
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y,false);
                                     Map.Instance.nodes[self.X - i, self.Y].temptype = Node.nodetype.zero;
+
+                                    
                                     //更新mapdata
                                     float temp2 = Map.Instance.MapData[(self.X - i) * 10 + self.Y];
                                     Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y] = temp2;

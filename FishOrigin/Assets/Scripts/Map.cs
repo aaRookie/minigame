@@ -70,10 +70,28 @@ public class Map : MonoBehaviour
     public void ChangeNodesData(int x1,int y1,int x2,int y2)
     {
         Node.nodetype type1 = nodes[x1, y1].temptype;
-        Node.nodetype type2 = nodes[x2, y2].temptype;
+
+        //Node.nodetype type2 = nodes[x2, y2].temptype;
 
         nodes[x2, y2].temptype = type1;
+
         nodes[x2, y2].SetType();
+        switch(nodes[x2,y2].temptype)
+        {
+            case Node.nodetype.box:
+                nodes[x2, y2].isBox = nodes[x1, y1].isBox;
+                break;
+            case Node.nodetype.tree:
+                nodes[x2, y2].isTree = nodes[x1, y1].isTree;
+                break;
+            case Node.nodetype.danger:
+                nodes[x2, y2].isDanger = nodes[x1, y1].isDanger;
+                break;
+            case Node.nodetype.flower:
+                nodes[x2, y2].isFlower = nodes[x1, y1].isFlower;
+                break;
+        }
+        
 
         //Debug.Log(MapData[x2 * 10 + y2]);
         //Debug.Log(MapData[x1 * 10 + y1]);
