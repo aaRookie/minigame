@@ -33,8 +33,33 @@ public class GameUIManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        ChangeSprite();
         ShowGamePanel();
         //DontDestroyOnLoad(gameObject);
+    }
+
+    public void ChangeSprite()
+    {
+        if(SelectLevel.Instance.CurrentLevel>=1&& SelectLevel.Instance.CurrentLevel <= 3)
+        {
+            m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right1;
+            m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left1;
+        }
+        if (SelectLevel.Instance.CurrentLevel >= 4 && SelectLevel.Instance.CurrentLevel <= 6)
+        {
+            m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right2;
+            m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left2;
+        }
+        if (SelectLevel.Instance.CurrentLevel >= 7 && SelectLevel.Instance.CurrentLevel <= 9)
+        {
+            m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right3;
+            m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left3;
+        }
+        if (SelectLevel.Instance.CurrentLevel ==10 )
+        {
+            m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right4;
+            m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left4;
+        }
     }
 
     public Text m_movenum;

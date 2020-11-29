@@ -34,60 +34,80 @@ public class StartSceneManger : MonoBehaviour
     void button1()
     {
         SelectLevel.Instance.CurrentLevel = 1;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right1;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left1;
         StartCoroutine(LoadGameScene());
     }
 
     void button2()
     {
         SelectLevel.Instance.CurrentLevel = 2;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right1;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left1;
         StartCoroutine(LoadGameScene());
     }
 
     void button3()
     {
         SelectLevel.Instance.CurrentLevel = 3;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right1;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left1;
         StartCoroutine(LoadGameScene());
     }
 
     void button4()
     {
         SelectLevel.Instance.CurrentLevel = 4;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right2;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left2;
         StartCoroutine(LoadGameScene());
     }
 
     void button5()
     {
         SelectLevel.Instance.CurrentLevel = 5;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right2;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left2;
         StartCoroutine(LoadGameScene());
     }
 
     void button6()
     {
         SelectLevel.Instance.CurrentLevel = 6;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right2;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left2;
         StartCoroutine(LoadGameScene());
     }
 
     void button7()
     {
         SelectLevel.Instance.CurrentLevel = 7;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right3;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left3;
         StartCoroutine(LoadGameScene());
     }
 
     void button8()
     {
         SelectLevel.Instance.CurrentLevel = 8;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right3;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left3;
         StartCoroutine(LoadGameScene());
     }
 
     void button9()
     {
         SelectLevel.Instance.CurrentLevel = 9;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right3;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left3;
         StartCoroutine(LoadGameScene());
     }
 
     void button10()
     {
         SelectLevel.Instance.CurrentLevel = 10;
+        SelectUIManager.Instance.m_right.GetComponent<Image>().sprite = SelectUIManager.Instance.right4;
+        SelectUIManager.Instance.m_left.GetComponent<Image>().sprite = SelectUIManager.Instance.left4;
         StartCoroutine(LoadGameScene());
     }
 
