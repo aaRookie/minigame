@@ -311,14 +311,16 @@ public class NodeItem : MonoBehaviour
     //光标变化
     private void OnMouseEnter()
     {
-        if (self.isWall == false)
+        if(self.temptype==Node.nodetype.zero)
         {
-            if (Mathf.Abs(self.X - Map.Instance.player_x) <= 1 && Mathf.Abs(self.Y - Map.Instance.player_y) <= 1)
-            {
-                
-            }
-
+            GameUIManager.Instance.ChangeMouseToDefault();
         }
+
+        if (self.temptype == Node.nodetype.box|| self.temptype == Node.nodetype.flower|| self.temptype == Node.nodetype.tree)
+        {
+            GameUIManager.Instance.ChangeMousetToInFish();
+        }
+
 
     }
 }

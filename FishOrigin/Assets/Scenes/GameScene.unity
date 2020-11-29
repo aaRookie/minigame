@@ -840,24 +840,27 @@ MonoBehaviour:
   right3: {fileID: 21300000, guid: 7e923181b873c184382de0ac02adeda5, type: 3}
   right4: {fileID: 21300000, guid: f9da1d39170e3f747a0e6dd1f5767874, type: 3}
   numImage:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: d573fbc88ba4ccf499511fa273217a18, type: 3}
+  - {fileID: 21300000, guid: 46ed7ba82f9fcd247bbf29549ab10547, type: 3}
+  - {fileID: 21300000, guid: c30c602a33abd7c42b9bf928195c1db1, type: 3}
+  - {fileID: 21300000, guid: 75d7538d99eb4944f9583885e278409e, type: 3}
+  - {fileID: 21300000, guid: c81050f5a711f8149bbdc91bf2cdf5c3, type: 3}
+  - {fileID: 21300000, guid: a1608565168466049824798153c9b931, type: 3}
+  - {fileID: 21300000, guid: 7309113c084452e4b9df45c14014b827, type: 3}
+  - {fileID: 21300000, guid: cad341392ebb0414db9c1887ae420e67, type: 3}
+  - {fileID: 21300000, guid: acac51fb973762f41a2a47eacde73ddb, type: 3}
+  - {fileID: 21300000, guid: a552edebab1bcb141b4ec7bec5be7886, type: 3}
+  - {fileID: 21300000, guid: a2b358897e9578443be16ce5ec75e357, type: 3}
+  - {fileID: 21300000, guid: d10caab6f55412445bc05ee53007f351, type: 3}
   m_left: {fileID: 551287622}
   m_right: {fileID: 171681882}
   Prefab_bowen: {fileID: 2054049161354992929, guid: da70df62fd4c5b64991ad58cc66125a6,
     type: 3}
+  mouseDefault: {fileID: 2800000, guid: 5c5c0c0a681fcdf4db5e892cd75a611b, type: 3}
+  mouseInFish: {fileID: 2800000, guid: 46ed7ba82f9fcd247bbf29549ab10547, type: 3}
+  mouseOutFish: {fileID: 0}
   m_movenum: {fileID: 1836470681}
-  m_numImage: {fileID: 0}
+  m_numImage: {fileID: 824268157}
 --- !u!114 &1038761874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,7 +1054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.3, y: -22.7}
+  m_AnchoredPosition: {x: 8.3, y: 5.2}
   m_SizeDelta: {x: 151.4903, y: 25.984055}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836470681
@@ -1075,7 +1078,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1

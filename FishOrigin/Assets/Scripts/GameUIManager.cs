@@ -23,6 +23,10 @@ public class GameUIManager : MonoBehaviour
 
     public GameObject Prefab_bowen;
 
+    public Texture2D mouseDefault;
+    public Texture2D mouseInFish;
+    public Texture2D mouseOutFish;
+
     public void Awake()
     {
         Instance = this;
@@ -32,6 +36,21 @@ public class GameUIManager : MonoBehaviour
 
     public Text m_movenum;
     public GameObject m_numImage;
+
+    public void ChangeMouseToDefault()
+    {
+        Cursor.SetCursor(mouseDefault, Vector2.zero, CursorMode.Auto);
+    }
+
+    public void ChangeMousetToInFish()
+    {
+        Cursor.SetCursor(mouseInFish, Vector2.zero, CursorMode.Auto);
+    }
+
+    public void ChangeMousetToOutFish()
+    {
+        Cursor.SetCursor(mouseOutFish, Vector2.zero, CursorMode.Auto);
+    }
 
     void Start()
     {
