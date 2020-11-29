@@ -14,7 +14,7 @@ public class NodeItem : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log(self.temptype+" "+self.X+" "+self.Y);
+        //Debug.Log(self.temptype+" "+self.X+" "+self.Y);
 
         if (self.temptype == Node.nodetype.ext)
             return;
@@ -127,13 +127,14 @@ public class NodeItem : MonoBehaviour
                     //Debug.Log(self.ChangeDir);
                     //Debug.Log(self.ChangeX);
 
-                    //判断是否生长
+                    //生长
                     if (influ.Count == 0)
                     {
                         if(self.isTree==false)
                         {
                             //改变1的触发器开关
                             self.isTree = true;
+                            //self.TreeSwitch = true;
 
                             if (self.ChangeDir == 1)
                             {
@@ -143,7 +144,7 @@ public class NodeItem : MonoBehaviour
                                     influ.Add(new Vector2(self.X - i, self.Y));
 
                                     //播放生长动画
-                                    Map.Instance.GameObject_element[self.X, self.Y].GetComponent<Animator>().SetBool("zhang", true);
+                                    Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetBool("zhang", true);
 
                                     //移动gameoject
                                     Map.Instance.GameObject_element[self.X - i, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X - i - 1, self.Y].transform.position;
@@ -158,8 +159,8 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y] = temp2;
                                     Map.Instance.MapData[(self.X - i) * 10 + self.Y] = 1;
 
-                                    Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
-                                    Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
+                                    //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
+                                    //Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
                                     //Map.Instance.nodes[self.X - i - 1, self.Y]
 
                                     //Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - 1, self.Y];
@@ -182,7 +183,7 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X + 1, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X + i + 1, self.Y].transform.position;
                                 }
                             }
-                            if (self.ChangeDir == 3)
+                            else if (self.ChangeDir == 3)
                             {
                                 for (int i = 1; i <= self.ChangeX; i++)
                                 {
@@ -196,7 +197,7 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X, self.Y - 1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y - i - 1].transform.position;
                                 }
                             }
-                            if (self.ChangeDir == 4)
+                            else if (self.ChangeDir == 4)
                             {
                                 for (int i = 1; i <= self.ChangeX; i++)
                                 {
@@ -210,27 +211,136 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X, self.Y + 1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y + i + 1].transform.position;
                                 }
                             }
-                        }
-                                             
+                       }
+
+
+                        return;                      
                     }
 
-                    //数据和图片变化
-                    if (self.TreeSwitch)
+                        //开启
+                    if (self.isTree == false)
                     {
-                        for (int i = 0; i < influ.Count; i++)
+                        //改变1的触发器开关
+                        self.isTree = true;
+                        //self.TreeSwitch = true;
+
+                        if (self.ChangeDir == 1)
                         {
-                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(true);
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+
+                                //播放生长动画
+                                Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetBool("zhang", true);
+
+                                //移动gameoject
+                                Map.Instance.GameObject_element[self.X - i, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X - i - 1, self.Y].transform.position;
+                                //更新列表gameobject
+                                Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - i, self.Y];
+                                Map.Instance.GameObject_element[self.X - i, self.Y] = null;
+                                //更新node
+                                Map.Instance.ChangeNodesData(self.X - i, self.Y, self.X - i - 1, self.Y);
+                                Map.Instance.ChangeNodesData(self.X - i, self.Y, true);
+                                //更新mapdata
+                                float temp2 = Map.Instance.MapData[(self.X - i) * 10 + self.Y];
+                                Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y] = temp2;
+                                Map.Instance.MapData[(self.X - i) * 10 + self.Y] = 1;
+
+                                //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
+                                //Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
+                                //Map.Instance.nodes[self.X - i - 1, self.Y]
+
+                                //Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - 1, self.Y];
+                                //Map.Instance.GameObject_element[self.X - 1, self.Y]= null;
+                                //Debug.Log(Map.Instance.MapData[(self.X - 1) * 10 + self.Y]);
+                                //Debug.Log(Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y]);
+                            }
+                        }
+                        if (self.ChangeDir == 2)
+                        {
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+                                influ.Add(new Vector2(self.X + i, self.Y));
+
+                                float temp1 = Map.Instance.MapData[(self.X + i + 1) * 10 + self.Y];
+                                float temp2 = Map.Instance.MapData[(self.X + 1) * 10 + self.Y];
+
+                                Map.Instance.MapData[(self.X + i + 1) * 10 + self.Y] = temp2;
+                                Map.Instance.MapData[(self.X + 1) * 10 + self.Y] = temp1;
+                                Map.Instance.GameObject_element[self.X + 1, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X + i + 1, self.Y].transform.position;
+                            }
+                        }
+                        else if (self.ChangeDir == 3)
+                        {
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+                                influ.Add(new Vector2(self.X, self.Y - i));
+
+                                float temp1 = Map.Instance.MapData[self.X * 10 + (self.Y - i - 1)];
+                                float temp2 = Map.Instance.MapData[self.X * 10 + self.Y - i];
+
+                                Map.Instance.MapData[self.X * 10 + (self.Y - i - 1)] = temp2;
+                                Map.Instance.MapData[self.X * 10 + self.Y - i] = temp1;
+                                Map.Instance.GameObject_element[self.X, self.Y - 1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y - i - 1].transform.position;
+                            }
+                        }
+                        else if (self.ChangeDir == 4)
+                        {
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+                                influ.Add(new Vector2(self.X, self.Y + i));
+
+                                float temp1 = Map.Instance.MapData[self.X * 10 + (self.Y + i + 1)];
+                                float temp2 = Map.Instance.MapData[self.X * 10 + self.Y + i];
+
+                                Map.Instance.MapData[self.X * 10 + (self.Y + i + 1)] = temp2;
+                                Map.Instance.MapData[self.X * 10 + self.Y + i] = temp1;
+                                Map.Instance.GameObject_element[self.X, self.Y + 1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y + i + 1].transform.position;
+                            }
+                        }
+                    }
+                        //缩回
+                    else if (self.isTree == true)
+                    {
+                        //改变1的触发器开关
+                        self.isTree = false;
+
+                        if (self.ChangeDir == 1)
+                        {
+                            for (int i = 1; i <= self.ChangeX; i++)
+                            {
+
+                                //播放生长动画
+                                Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetBool("zhang", false);
+
+                                //更新node
+                                Map.Instance.ChangeNodesData(self.X - i, self.Y, false);
+
+                                //更新mapdata
+                                //float temp2 = Map.Instance.MapData[(self.X - i) * 10 + self.Y];
+                                //Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y] = temp2;
+                                Map.Instance.MapData[(self.X - i) * 10 + self.Y] = 0;
+                                Map.Instance.nodes[self.X - i, self.Y].temptype = Node.nodetype.zero;
+                            }
                         }
                     }
 
-                    else if (!self.TreeSwitch)
-                    {
-                        for (int i = 0; i < influ.Count; i++)
-                        {
-                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(false);
-                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].ReSetNode();
-                        }
-                    }
+                    ////数据和图片变化
+                    //if (self.TreeSwitch)
+                    //{
+                    //    for (int i = 0; i < influ.Count; i++)
+                    //    {
+                    //        Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(true);
+                    //    }
+                    //}
+
+                    //else if (!self.TreeSwitch)
+                    //{
+                    //    for (int i = 0; i < influ.Count; i++)
+                    //    {
+                    //        Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(false);
+                    //        Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].ReSetNode();
+                    //    }
+                    //}
                 }
             }
         }

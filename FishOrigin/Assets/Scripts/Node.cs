@@ -108,6 +108,7 @@ public class Node
     {
         isTree = tree;
         temptype = nodetype.tree;
+        //TreeSwitch = true;
         //if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
     }  
     

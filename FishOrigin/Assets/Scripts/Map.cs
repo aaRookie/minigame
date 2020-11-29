@@ -126,7 +126,8 @@ public class Map : MonoBehaviour
                 //空闲
                 if(MapData[i*Width+j]==0f)
                 {
-                    nodes[i, j].SetIsWall(false);                    
+                    nodes[i, j].SetIsWall(false);
+                    nodes[i, j].temptype = Node.nodetype.zero;
                 }
                 //石头
                 else if (MapData[i * Width + j] ==1f)
