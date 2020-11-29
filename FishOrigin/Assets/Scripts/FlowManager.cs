@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FlowManager : MonoBehaviour
 {
@@ -80,6 +81,16 @@ public class FlowManager : MonoBehaviour
         //过场动画后转化为pause
         tempFlow = cFlow.choose;
         Map.Instance.ResetMap();
+
+        GameUIManager.Instance.HideGamePanel();
+        StartCoroutine(LoadCurrentScene());
+        //SceneManager.LoadScene(1);
+    }
+
+    IEnumerator LoadCurrentScene()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(1);
     }
 
 }

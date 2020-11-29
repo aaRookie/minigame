@@ -12,6 +12,8 @@ public class GameUIManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        ShowGamePanel();
+        DontDestroyOnLoad(gameObject);
     }
 
     public Text m_movenum;
@@ -19,6 +21,18 @@ public class GameUIManager : MonoBehaviour
     void Start()
     {
 
+    }
+
+    //退出动画
+    public void HideGamePanel()
+    {
+        Debug.Log("隐藏屏幕");
+    }
+
+    //进入动画
+    public void ShowGamePanel()
+    {
+        Debug.Log("显示屏幕");
     }
 
     public void ChangeMoveNum(int i)

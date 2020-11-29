@@ -40,8 +40,8 @@ public class Player : MonoBehaviour
     {
         bool canmove = true;
 
-        Debug.Log("playerx: "+Map.Instance.player_x+" playery: "+ Map.Instance.player_y);
-        Debug.Log("nx: " + n.X + " ny: " + n.Y);
+        //Debug.Log("playerx: "+Map.Instance.player_x+" playery: "+ Map.Instance.player_y);
+        //Debug.Log("nx: " + n.X + " ny: " + n.Y);
 
         if (path.Count == 0)
         {
