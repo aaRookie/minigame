@@ -19,6 +19,7 @@ public class Node
         danger,
         ext,
         zero,
+        stop,
     }
 
     //石头

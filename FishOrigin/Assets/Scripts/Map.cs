@@ -138,6 +138,7 @@ public class Map : MonoBehaviour
                 else if (MapData[i * Width + j] ==1f)
                 {
                     nodes[i, j].SetIsWall(true);
+                    nodes[i, j].temptype = Node.nodetype.stop;
                 }               
                 //荷花
                 else if(MapData[i * Width + j] >=2f&& MapData[i * Width + j] <3)
@@ -249,6 +250,13 @@ public class Map : MonoBehaviour
                 {
                     GameObject temp = GameObject.Instantiate(Prefab_tree, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
                     GameObject_element[i, j] = temp;
+
+                    if (nodes[i, j].ChangeDir == 2)
+                        GameObject_element[i, j].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                    if (nodes[i, j].ChangeDir == 3)
+                        GameObject_element[i, j].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                    if (nodes[i, j].ChangeDir == 4)
+                        GameObject_element[i, j].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
                     //nodes[i, j].GetNodeItem().OnMouseDown();
                 }
             }

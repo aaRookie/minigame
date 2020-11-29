@@ -173,44 +173,112 @@ public class NodeItem : MonoBehaviour
                             }
                             if (self.ChangeDir == 2)
                             {
+                                //Map.Instance.GameObject_element[self.X, self.Y].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                               
                                 for (int i = 1; i <= self.ChangeX; i++)
                                 {
+                                    //添加ext坐标
                                     influ.Add(new Vector2(self.X + i, self.Y));
 
-                                    float temp1 = Map.Instance.MapData[(self.X + i + 1) * 10 + self.Y];
-                                    float temp2 = Map.Instance.MapData[(self.X + 1) * 10 + self.Y];
+                                    //播放生长动画
+                                    Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetTrigger("zhang");
+                                    
 
+                                    //移动gameoject
+                                    if (Map.Instance.GameObject_element[self.X + i, self.Y])
+                                        Map.Instance.GameObject_element[self.X + i, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X + i + 1, self.Y].transform.position;
+                                    //更新列表gameobject
+                                    Map.Instance.GameObject_element[self.X + i + 1, self.Y] = Map.Instance.GameObject_element[self.X + i, self.Y];
+                                    Map.Instance.GameObject_element[self.X + i, self.Y] = null;
+                                    //更新node
+                                    Map.Instance.ChangeNodesData(self.X + i, self.Y, self.X + i + 1, self.Y);
+                                    Map.Instance.ChangeNodesData(self.X + i, self.Y, false);
+                                    Map.Instance.nodes[self.X + i, self.Y].temptype = Node.nodetype.zero;
+                                    //更新mapdata
+                                    float temp2 = Map.Instance.MapData[(self.X + i) * 10 + self.Y];
                                     Map.Instance.MapData[(self.X + i + 1) * 10 + self.Y] = temp2;
-                                    Map.Instance.MapData[(self.X + 1) * 10 + self.Y] = temp1;
-                                    Map.Instance.GameObject_element[self.X + 1, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X + i + 1, self.Y].transform.position;
+                                    Map.Instance.MapData[(self.X + i) * 10 + self.Y] = 0;
+
+                                    //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
+                                    //Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
+                                    //Map.Instance.nodes[self.X - i - 1, self.Y]
+
+                                    //Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - 1, self.Y];
+                                    //Map.Instance.GameObject_element[self.X - 1, self.Y]= null;
+                                    //Debug.Log(Map.Instance.MapData[(self.X - 1) * 10 + self.Y]);
+                                    //Debug.Log(Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y]);
                                 }
                             }
                             else if (self.ChangeDir == 3)
                             {
                                 for (int i = 1; i <= self.ChangeX; i++)
                                 {
+                                    //添加ext坐标
                                     influ.Add(new Vector2(self.X, self.Y - i));
 
-                                    float temp1 = Map.Instance.MapData[self.X * 10 + (self.Y - i - 1)];
-                                    float temp2 = Map.Instance.MapData[self.X * 10 + self.Y - i];
+                                    //播放生长动画
+                                    Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetTrigger("zhang");
 
-                                    Map.Instance.MapData[self.X * 10 + (self.Y - i - 1)] = temp2;
-                                    Map.Instance.MapData[self.X * 10 + self.Y - i] = temp1;
-                                    Map.Instance.GameObject_element[self.X, self.Y - 1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y - i - 1].transform.position;
+
+                                    //移动gameoject
+                                    if (Map.Instance.GameObject_element[self.X, self.Y-i])
+                                        Map.Instance.GameObject_element[self.X , self.Y - i].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y - i - 1].transform.position;
+                                    //更新列表gameobject
+                                    Map.Instance.GameObject_element[self.X , self.Y-i-i] = Map.Instance.GameObject_element[self.X, self.Y-i];
+                                    Map.Instance.GameObject_element[self.X , self.Y-i] = null;
+                                    //更新node
+                                    Map.Instance.ChangeNodesData(self.X, self.Y-i, self.X, self.Y-i-i);
+                                    Map.Instance.ChangeNodesData(self.X, self.Y - i, false);
+                                    Map.Instance.nodes[self.X , self.Y-i].temptype = Node.nodetype.zero;
+                                    //更新mapdata
+                                    float temp2 = Map.Instance.MapData[(self.X ) * 10 + self.Y-i];
+                                    Map.Instance.MapData[(self.X ) * 10 + self.Y-i-1] = temp2;
+                                    Map.Instance.MapData[(self.X ) * 10 + self.Y-i] = 0;
+
+                                    //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
+                                    //Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
+                                    //Map.Instance.nodes[self.X - i - 1, self.Y]
+
+                                    //Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - 1, self.Y];
+                                    //Map.Instance.GameObject_element[self.X - 1, self.Y]= null;
+                                    //Debug.Log(Map.Instance.MapData[(self.X - 1) * 10 + self.Y]);
+                                    //Debug.Log(Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y]);
                                 }
                             }
                             else if (self.ChangeDir == 4)
                             {
                                 for (int i = 1; i <= self.ChangeX; i++)
                                 {
+                                    //添加ext坐标
                                     influ.Add(new Vector2(self.X, self.Y + i));
 
-                                    float temp1 = Map.Instance.MapData[self.X * 10 + (self.Y + i + 1)];
-                                    float temp2 = Map.Instance.MapData[self.X * 10 + self.Y + i];
+                                    //播放生长动画
+                                    Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetTrigger("zhang");
 
-                                    Map.Instance.MapData[self.X * 10 + (self.Y + i + 1)] = temp2;
-                                    Map.Instance.MapData[self.X * 10 + self.Y + i] = temp1;
-                                    Map.Instance.GameObject_element[self.X, self.Y + 1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y + i + 1].transform.position;
+
+                                    //移动gameoject
+                                    if (Map.Instance.GameObject_element[self.X, self.Y + i])
+                                        Map.Instance.GameObject_element[self.X, self.Y + i].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y + i + 1].transform.position;
+                                    //更新列表gameobject
+                                    Map.Instance.GameObject_element[self.X, self.Y + i + i] = Map.Instance.GameObject_element[self.X, self.Y + i];
+                                    Map.Instance.GameObject_element[self.X, self.Y + i] = null;
+                                    //更新node
+                                    Map.Instance.ChangeNodesData(self.X, self.Y + i, self.X, self.Y + i + i);
+                                    Map.Instance.ChangeNodesData(self.X, self.Y + i, false);
+                                    Map.Instance.nodes[self.X, self.Y + i].temptype = Node.nodetype.zero;
+                                    //更新mapdata
+                                    float temp2 = Map.Instance.MapData[(self.X) * 10 + self.Y + i];
+                                    Map.Instance.MapData[(self.X) * 10 + self.Y + i + 1] = temp2;
+                                    Map.Instance.MapData[(self.X) * 10 + self.Y + i] = 0;
+
+                                    //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
+                                    //Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
+                                    //Map.Instance.nodes[self.X - i - 1, self.Y]
+
+                                    //Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - 1, self.Y];
+                                    //Map.Instance.GameObject_element[self.X - 1, self.Y]= null;
+                                    //Debug.Log(Map.Instance.MapData[(self.X - 1) * 10 + self.Y]);
+                                    //Debug.Log(Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y]);
                                 }
                             }
 
@@ -253,7 +321,7 @@ public class NodeItem : MonoBehaviour
                 GameUIManager.Instance.ChangeMoveNum(Map.Instance.levelMoveNum);
 
                 self.BoxSwitch = !self.BoxSwitch;
-                Debug.Log(self.BoxSwitch);
+                //Debug.Log(self.BoxSwitch);
 
                 if (!self.BoxSwitch)
                 {
@@ -313,8 +381,15 @@ public class NodeItem : MonoBehaviour
     {
         if(self.temptype==Node.nodetype.zero)
         {
+            if(Mathf.Abs(self.X-Map.Instance.player_x)<=2&& Mathf.Abs(self.Y - Map.Instance.player_y) <= 2)
+            {
+                GameUIManager.Instance.ChangeMousetToInFish();
+            }
+            else
             GameUIManager.Instance.ChangeMouseToDefault();
         }
+
+
 
         if (self.temptype == Node.nodetype.box|| self.temptype == Node.nodetype.flower|| self.temptype == Node.nodetype.tree)
         {
