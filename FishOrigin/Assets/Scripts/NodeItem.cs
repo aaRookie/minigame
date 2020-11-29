@@ -153,17 +153,18 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - i, self.Y];
                                     Map.Instance.GameObject_element[self.X - i, self.Y] = null;
                                     //更新node
-                                    Debug.Log(Map.Instance.nodes[self.X - i, self.Y].isWall);
+                                    //Debug.Log(Map.Instance.nodes[self.X - i, self.Y].isWall);
 
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y, self.X - i - 1, self.Y);
 
                                     //为box时修复
                                     if (Map.Instance.nodes[self.X - i, self.Y].temptype == Node.nodetype.box)
                                     {
-                                        if (Map.Instance.nodes[self.X - i - 1, self.Y].isWall = Map.Instance.nodes[self.X - i, self.Y].isWall) ;
+                                        Map.Instance.nodes[self.X - i - 1, self.Y].isWall = Map.Instance.nodes[self.X - i, self.Y].isWall;
                                     }
 
-                                    Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].isWall);
+                                    //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].isWall);
+
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y,false);
                                     Map.Instance.nodes[self.X - i, self.Y].temptype = Node.nodetype.zero;
 
@@ -204,6 +205,13 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X + i, self.Y] = null;
                                     //更新node
                                     Map.Instance.ChangeNodesData(self.X + i, self.Y, self.X + i + 1, self.Y);
+
+                                    //为box时修复
+                                    if (Map.Instance.nodes[self.X + i, self.Y].temptype == Node.nodetype.box)
+                                    {
+                                        Map.Instance.nodes[self.X + i + 1, self.Y].isWall = Map.Instance.nodes[self.X + i, self.Y].isWall;
+                                    }
+
                                     Map.Instance.ChangeNodesData(self.X + i, self.Y, false);
                                     Map.Instance.nodes[self.X + i, self.Y].temptype = Node.nodetype.zero;
                                     //更新mapdata
@@ -240,6 +248,13 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X , self.Y-i] = null;
                                     //更新node
                                     Map.Instance.ChangeNodesData(self.X, self.Y-i, self.X, self.Y-i-i);
+
+                                    //为box时修复
+                                    if (Map.Instance.nodes[self.X, self.Y-i].temptype == Node.nodetype.box)
+                                    {
+                                        Map.Instance.nodes[self.X, self.Y - i - 1].isWall = Map.Instance.nodes[self.X , self.Y - i].isWall;
+                                    }
+
                                     Map.Instance.ChangeNodesData(self.X, self.Y - i, false);
                                     Map.Instance.nodes[self.X , self.Y-i].temptype = Node.nodetype.zero;
                                     //更新mapdata
@@ -276,6 +291,13 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X, self.Y + i] = null;
                                     //更新node
                                     Map.Instance.ChangeNodesData(self.X, self.Y + i, self.X, self.Y + i + i);
+
+                                    //为box时修复
+                                    if (Map.Instance.nodes[self.X, self.Y + i].temptype == Node.nodetype.box)
+                                    {
+                                        Map.Instance.nodes[self.X, self.Y + i + 1].isWall = Map.Instance.nodes[self.X, self.Y + i].isWall;
+                                    }
+
                                     Map.Instance.ChangeNodesData(self.X, self.Y + i, false);
                                     Map.Instance.nodes[self.X, self.Y + i].temptype = Node.nodetype.zero;
                                     //更新mapdata
