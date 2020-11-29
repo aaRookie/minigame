@@ -99,13 +99,13 @@ public class FlowManager : MonoBehaviour
     IEnumerator LoadCurrentScene()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     IEnumerator LoadLevelScene()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 }
