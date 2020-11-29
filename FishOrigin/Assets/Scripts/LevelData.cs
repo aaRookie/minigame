@@ -6,13 +6,16 @@ public class LevelData : MonoBehaviour
 {
     public static LevelData Instance = null;
 
-
     private int Level1MoveNum = 8;
     private int Level2MoveNum = 8;
     private int Level3MoveNum = 8;
     private int Level4MoveNum = 8;
     private int Level5MoveNum = 8;
     private int Level6MoveNum = 8;
+    private int Level7MoveNum = 8;
+    private int Level8MoveNum = 8;
+    private int Level9MoveNum = 8;
+    private int Level10MoveNum = 8;
 
     private void Awake()
     {
@@ -33,6 +36,14 @@ public class LevelData : MonoBehaviour
             return Level5MoveNum;
         else if (i == 6)
             return Level6MoveNum;
+        else if (i == 7)
+            return Level7MoveNum;
+        else if (i == 8)
+            return Level8MoveNum;
+        else if (i == 9)
+            return Level9MoveNum;
+        else if (i == 10)
+            return Level10MoveNum;
         else return 1;
     }
 
@@ -65,6 +76,27 @@ public class LevelData : MonoBehaviour
     {
         return level6_map;
     }
+
+    public float[] Getlevel7_map()
+    {
+        return level7_map;
+    }
+
+    public float[] Getlevel8_map()
+    {
+        return level8_map;
+    }
+
+    public float[] Getlevel9_map()
+    {
+        return level9_map;
+    }
+
+    public float[] Getlevel10_map()
+    {
+        return level10_map;
+    }
+
 
     //bug,第一格必须为0
 
@@ -137,6 +169,54 @@ public class LevelData : MonoBehaviour
                                                  0.000f, 0.000f, 10.00f, 3.111f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
                                                  0.000f, 1.000f, 1.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
                                                  0.000f, 0.000f, 1.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f };
+
+    [HideInInspector]
+    private float[] level7_map = new float[100] {0.000f, 0.000f, 0.000f, 0.000f, 10.00f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 6.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 9.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f };
+
+    [HideInInspector]
+    private float[] level8_map = new float[100] {0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f };
+
+    [HideInInspector]
+    private float[] level9_map = new float[100] {0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f };
+
+    [HideInInspector]
+    private float[] level10_map = new float[100] {0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
                                                  0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
                                                  0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f };
 

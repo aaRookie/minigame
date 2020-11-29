@@ -73,7 +73,9 @@ public class FlowManager : MonoBehaviour
 
     public void DeadFun()
     {
-        tempFlow = cFlow.pause;
+        tempFlow = cFlow.dead;
+        GameUIManager.Instance.HideGamePanel();
+        StartCoroutine(LoadCurrentScene());
     }
 
     public void ResetGame()

@@ -75,6 +75,7 @@ public class GameUIManager : MonoBehaviour
 
     public void ChangeMoveNum(int i)
     {
+
         m_movenum.text = i.ToString();
         switch(i)
         {

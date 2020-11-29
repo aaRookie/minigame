@@ -21,14 +21,12 @@ public class Map : MonoBehaviour
     public GameObject[,] Grid_gameobject = null;
     public GameObject[,] GameObject_element = null;
      
-
     public GameObject Prefab_player;
     public GameObject Prefab_wall;
     public GameObject Prefab_end;
     public GameObject Prefab_tree;
     public GameObject Prefab_box;
-
-    
+    public GameObject Prefab_diren;
 
 
     public GameObject m_player=null;
@@ -42,6 +40,8 @@ public class Map : MonoBehaviour
 
     public int end_x = 0;
     public int end_y = 0;
+
+    public List<Vector2> deadPos = null;
 
     public void Start()
     {
@@ -96,13 +96,15 @@ public class Map : MonoBehaviour
             //Debug.Log("win");
             //GameUIManager.Instance.HideGamePanel();
         }
+        if (FlowManager.Instance.getTempFlow() == FlowManager.cFlow.choose && Map.Instance.levelMoveNum == 0)
+            FlowManager.Instance.DeadFun();
     }
 
     //初始化地图
     void InitMap()
     {
         //LoadLevelData(SelectLevel.Instance.CurrentLevel);
-        LoadLevelData(6);
+        LoadLevelData(7);
 
         player_x = 0;
         player_y = 0;
@@ -112,6 +114,7 @@ public class Map : MonoBehaviour
         nodes = new Node[Width, Height];
         Grid_gameobject = new GameObject[Width, Height];
         GameObject_element=new GameObject[Width, Height];
+        deadPos = new List<Vector2>();
 
         for (int i = 0; i < Width; i++)
         {
@@ -178,13 +181,19 @@ public class Map : MonoBehaviour
                     nodes[i, j].SetIsWall(true);
                     nodes[i, j].SetIsMirror(true);
                 }
+                //敌人
+                else if(MapData[i * Width + j]==6f)
+                {
+                    nodes[i, j].temptype = Node.nodetype.zero;
+                    deadPos.Add(new Vector2(i, j));
+                }
                 //角色
                 else if (MapData[i * Width + j] == 10f)
                 {
                     //player.SetCurNode(nodes[i, j]);
                     player_x = i;
                     player_y = j;
-
+                    nodes[i, j].temptype = Node.nodetype.zero;
                 }
                 //终点
                 else if(MapData[i * Width + j] == 9f)
@@ -223,6 +232,14 @@ public class Map : MonoBehaviour
                 if (MapData[i * Width + j] == 4f)
                 {
                     GameObject temp=GameObject.Instantiate(Prefab_box, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
+                    GameObject_element[i, j] = temp;
+                    //nodes[i, j].GetNodeItem().OnMouseDown();
+                }
+
+                //敌人
+                if (MapData[i * Width + j] == 6f)
+                {
+                    GameObject temp = GameObject.Instantiate(Prefab_diren, Grid_gameobject[i, j].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
                     GameObject_element[i, j] = temp;
                     //nodes[i, j].GetNodeItem().OnMouseDown();
                 }
@@ -292,6 +309,22 @@ public class Map : MonoBehaviour
             case 6:
                 MapData = LevelData.Instance.Getlevel6_map();
                 levelMoveNum = LevelData.Instance.GetLevelMoveNum(6);
+                break;
+            case 7:
+                MapData = LevelData.Instance.Getlevel7_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(7);
+                break;
+            case 8:
+                MapData = LevelData.Instance.Getlevel8_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(8);
+                break;
+            case 9:
+                MapData = LevelData.Instance.Getlevel9_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(9);
+                break;
+            case 10:
+                MapData = LevelData.Instance.Getlevel10_map();
+                levelMoveNum = LevelData.Instance.GetLevelMoveNum(10);
                 break;
         }
 

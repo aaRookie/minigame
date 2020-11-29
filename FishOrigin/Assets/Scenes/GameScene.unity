@@ -1245,6 +1245,8 @@ MonoBehaviour:
     type: 3}
   Prefab_box: {fileID: 1330653995925603573, guid: 25a20d2986e95e448a2ba01ac7d209f4,
     type: 3}
+  Prefab_diren: {fileID: 1330653995925603573, guid: 6ebd4aac2e18fba44b9041781bd0a989,
+    type: 3}
   m_player: {fileID: 0}
   m_end: {fileID: 1330653995925603573, guid: 25a20d2986e95e448a2ba01ac7d209f4, type: 3}
   MapData: []
@@ -1253,6 +1255,7 @@ MonoBehaviour:
   player_y: 0
   end_x: 0
   end_y: 0
+  deadPos: []
 --- !u!4 &2065906096
 Transform:
   m_ObjectHideFlags: 0

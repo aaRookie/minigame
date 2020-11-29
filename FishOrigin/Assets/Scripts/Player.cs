@@ -81,6 +81,21 @@ public class Player : MonoBehaviour
         if (canmove)
         {
             transform.DOMove(n.GetNodeItem().transform.position + new Vector3(0, 0, -0.1f), 0.5f);
+
+            for (int i = 0; i < Map.Instance.deadPos.Count; i++)
+            {
+                if (n.X == Map.Instance.deadPos[i].x && n.Y == Map.Instance.deadPos[i].y)
+                {
+                    FlowManager.Instance.ChangeToDead();
+                    Debug.Log(Map.Instance.GameObject_element[n.X, n.Y]);
+                    Map.Instance.GameObject_element[n.X, n.Y].GetComponent<Animator>().SetTrigger("eat");
+                    Map.Instance.m_player.transform.localScale = Vector3.zero;
+                    yield return new WaitForSeconds(1.5f);
+                    FlowManager.Instance.DeadFun();
+                }
+            }
+            
+            
             yield return new WaitForSeconds(0.5f);
             curNode = n;
             n.ReSetNormalNode();
