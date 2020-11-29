@@ -12,6 +12,8 @@ public class NodeItem : MonoBehaviour
         self = node;
     }
 
+    
+
     public void OnMouseDown()
     {             
         //点击荷花
