@@ -67,7 +67,25 @@ public class Map : MonoBehaviour
         InitMap();
     }
 
+    public void ChangeNodesData(int x1,int y1,int x2,int y2)
+    {
+        Node.nodetype type1 = nodes[x1, y1].temptype;
+        Node.nodetype type2 = nodes[x2, y2].temptype;
+
+        nodes[x2, y2].temptype = type1;
+        nodes[x2, y2].SetType();
+
+        //Debug.Log(MapData[x2 * 10 + y2]);
+        //Debug.Log(MapData[x1 * 10 + y1]);
+
+        //MapData[x2*10+y2] = MapData[x1*10+y1];
+    }
     
+    public void ChangeNodesData(int x1, int y1, bool isext)
+    {
+            nodes[x1, y1].SetIsWall(isext);
+            nodes[x1, y1].temptype = Node.nodetype.ext;
+    }
 
     public void CheckIsWin()
     {
@@ -108,7 +126,7 @@ public class Map : MonoBehaviour
                 //空闲
                 if(MapData[i*Width+j]==0f)
                 {
-                    nodes[i, j].SetIsWall(false);
+                    nodes[i, j].SetIsWall(false);                    
                 }
                 //石头
                 else if (MapData[i * Width + j] ==1f)

@@ -26,13 +26,13 @@ public class GameUIManager : MonoBehaviour
     //退出动画
     public void HideGamePanel()
     {
-        Debug.Log("隐藏屏幕");
+        //Debug.Log("隐藏屏幕");
     }
 
     //进入动画
     public void ShowGamePanel()
     {
-        Debug.Log("显示屏幕");
+        //Debug.Log("显示屏幕");
     }
 
     public void ChangeMoveNum(int i)

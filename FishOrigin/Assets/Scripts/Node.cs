@@ -10,11 +10,22 @@ public class Node
     public float G = 0;
     public float H = 0;
 
+    public nodetype temptype;
+    public enum nodetype
+    {
+        flower,
+        box,
+        tree,
+        danger,
+        ext,
+        zero,
+    }
+
     //石头
     public bool isWall=false;
     //荷花
     public bool isFlower = false;
-    //出发
+    //box
     public bool isBox=false;
     //藤蔓
     public bool isTree = false;
@@ -51,31 +62,70 @@ public class Node
         CreateNode();
     }
 
+    public void SetType()
+    {
+        if (temptype == nodetype.tree)
+            SetIsTree(isTree);
+        else if (temptype == nodetype.box)
+            SetIsBox(isBox);
+        else if (temptype == nodetype.danger)
+            SetIsDanger(isDanger);
+        else if (temptype == nodetype.flower)
+            SetIsFlower(isFlower);
+    }
+
     //设置墙
     public void SetIsWall(bool wall)
     {
         isWall = wall;
+        if (isWall)
+            temptype = nodetype.zero;
+        //if(isWall)
+            //temptype = nodetype.wall;
+        //else
+            //temptype = nodetype.space;
+
         //if (isWall) { nodeRender.material.SetColor("_Color", Color.black); }
+    }
+
+    public void ChangeToWall(bool wall)
+    {
+        isWall = wall;
     }
 
     //设置荷花
     public void SetIsFlower(bool flower)
     {
         isFlower = flower;
-        if (isFlower) { nodeRender.material.SetColor("_Color", Color.blue); }
+        temptype = nodetype.flower;
+        //if (isFlower) 
+            //temptype
+        //{ nodeRender.material.SetColor("_Color", Color.blue); }
     }
 
     //设置藤蔓
     public void SetIsTree(bool tree)
     {
         isTree = tree;
+        temptype = nodetype.tree;
         if (isTree) { nodeRender.material.SetColor("_Color", Color.green); }
     }  
     
+    //box
     public void SetIsBox(bool box)
     {
         isBox = box;
+        temptype = nodetype.box;
+        //if(isBox)
+        //    temptype = nodetype.box;
+        //else
+        //    temptype = nodetype.box;
         //if (isBox) { nodeRender.material.SetColor("_Color", Color.yellow); }
+    }
+
+    public void SetIsDanger(bool danger)
+    {
+        isDanger = danger;
     }
 
     //设置镜子

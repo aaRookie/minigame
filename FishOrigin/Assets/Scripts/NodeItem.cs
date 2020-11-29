@@ -12,12 +12,15 @@ public class NodeItem : MonoBehaviour
         self = node;
     }
 
-    
-
     public void OnMouseDown()
-    {             
-        //点击荷花
-        if(self.isFlower==true)
+    {
+        Debug.Log(self.temptype+" "+self.X+" "+self.Y);
+
+        if (self.temptype == Node.nodetype.ext)
+            return;
+
+        //点击荷花,1*1 to 2*2
+        if(self.temptype==Node.nodetype.flower)
         {
             if (FlowManager.Instance.getTempFlow() == FlowManager.cFlow.choose)
             {
@@ -35,34 +38,6 @@ public class NodeItem : MonoBehaviour
                     //获取变化范围
                     if (influ.Count==0)
                     {
-                        if (self.ChangeDir == 1)
-                        {
-                            for (int i = 1; i <= self.ChangeX; i++)
-                            {
-                                influ.Add(new Vector2(self.X - i, self.Y));
-                            }
-                        }
-                        if (self.ChangeDir == 2)
-                        {
-                            for (int i = 1; i <= self.ChangeX; i++)
-                            {
-                                influ.Add(new Vector2(self.X + i, self.Y));
-                            }
-                        }
-                        if (self.ChangeDir == 3)
-                        {
-                            for (int i = 1; i <= self.ChangeX; i++)
-                            {
-                                influ.Add(new Vector2(self.X, self.Y - i));
-                            }
-                        }
-                        if (self.ChangeDir == 4)
-                        {
-                            for (int i = 1; i <= self.ChangeX; i++)
-                            {
-                                influ.Add(new Vector2(self.X, self.Y + i));
-                            }
-                        }
                         if (self.ChangeDir == 5)
                         {
                             for (int i = 0; i <= self.ChangeX; i++)
@@ -136,8 +111,8 @@ public class NodeItem : MonoBehaviour
             }
         }
 
-        //点击藤蔓
-        else if (self.isTree == true)
+        //点击藤蔓 1*1 to X*1
+        else if (self.temptype == Node.nodetype.tree)
         {
             if (FlowManager.Instance.getTempFlow() == FlowManager.cFlow.choose)
             {
@@ -152,24 +127,39 @@ public class NodeItem : MonoBehaviour
                     //Debug.Log(self.ChangeDir);
                     //Debug.Log(self.ChangeX);
 
-                    //获取变化范围
+                    //判断是否生长
                     if (influ.Count == 0)
                     {
                         if(self.isTree==false)
                         {
+                            //改变1的触发器开关
+                            self.isTree = true;
+
                             if (self.ChangeDir == 1)
                             {
                                 for (int i = 1; i <= self.ChangeX; i++)
                                 {
+                                    //添加ext坐标
                                     influ.Add(new Vector2(self.X - i, self.Y));
 
-                                    float temp1 = Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y];
-                                    float temp2 = Map.Instance.MapData[(self.X - 1) * 10 + self.Y];
+                                    //播放生长动画
 
+                                    
+                                    //移动gameoject
+                                    Map.Instance.GameObject_element[self.X - i, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X - i - 1, self.Y].transform.position;
+                                    //更新列表gameobject
+                                    Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - i, self.Y];
+                                    Map.Instance.GameObject_element[self.X - i, self.Y] = null;
+                                    //更新node
+                                    Map.Instance.ChangeNodesData(self.X - i, self.Y, self.X - i - 1, self.Y);
+                                    Map.Instance.ChangeNodesData(self.X - i, self.Y,true);
+                                    //更新mapdata
+                                    float temp2 = Map.Instance.MapData[(self.X - i) * 10 + self.Y];
                                     Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y] = temp2;
-                                    Map.Instance.MapData[(self.X - 1) * 10 + self.Y] = temp1;
-                                    Map.Instance.GameObject_element[self.X - 1, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X - i - 1, self.Y].transform.position;
-                                    //交换两个网格的node
+                                    Map.Instance.MapData[(self.X - i) * 10 + self.Y] = 1;
+
+                                    Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
+                                    Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
                                     //Map.Instance.nodes[self.X - i - 1, self.Y]
 
                                     //Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - 1, self.Y];
@@ -246,7 +236,7 @@ public class NodeItem : MonoBehaviour
         }
 
         //点击开关
-        else if (self.isBox==true)
+        else if (self.temptype == Node.nodetype.box)
         {
             if (Map.Instance.levelMoveNum > 0)
             {
@@ -255,17 +245,18 @@ public class NodeItem : MonoBehaviour
                 GameUIManager.Instance.ChangeMoveNum(Map.Instance.levelMoveNum);
 
                 self.BoxSwitch = !self.BoxSwitch;
+                Debug.Log(self.BoxSwitch);
 
                 if (!self.BoxSwitch)
                 {
-                    Map.Instance.nodes[self.X, self.Y].SetIsWall(true);
+                    Map.Instance.nodes[self.X, self.Y].ChangeToWall(true);
                     //Map.Instance.GameObject_element[self.X, self.Y].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                     Map.Instance.GameObject_element[self.X, self.Y].GetComponent<Animator>().SetBool("guan", false);
                 }
                     
                 else if (self.BoxSwitch)
                 {
-                    Map.Instance.nodes[self.X, self.Y].SetIsWall(false);
+                    Map.Instance.nodes[self.X, self.Y].ChangeToWall(false);
                     Map.Instance.nodes[self.X, self.Y].ReSetNode();
                     //Map.Instance.GameObject_element[self.X, self.Y].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                     Map.Instance.GameObject_element[self.X, self.Y].GetComponent<Animator>().SetBool("guan", true);
@@ -274,7 +265,7 @@ public class NodeItem : MonoBehaviour
         }
 
         //空位角色移动
-        else if (self.isWall == false)
+        else if (self.temptype == Node.nodetype.zero)
         {
             if (FlowManager.Instance.getTempFlow() == FlowManager.cFlow.choose)
             {

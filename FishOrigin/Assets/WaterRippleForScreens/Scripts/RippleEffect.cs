@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 namespace WaterRippleForScreens {
 
@@ -34,6 +35,9 @@ public class RippleEffect : MonoBehaviour {
     //Reference to the Shader
 	private Material material;
 
+    private float tempTime=0f;
+    private float tempcd=0.24f;
+
     //Used on detecting player input
     private bool playerClick;
     private Vector2 playerClickPosition;
@@ -59,6 +63,8 @@ public class RippleEffect : MonoBehaviour {
         material = new Material(Shader.Find("Hidden/RippleDiffuse"));
 	}
 
+
+
     IEnumerator StopEffect()
         {
             yield return new WaitForSeconds(2f);
@@ -69,11 +75,23 @@ public class RippleEffect : MonoBehaviour {
         if (detectClick) { //true -> Detect mouse left click / false -> Skip mouse click detection
 #if UNITY_EDITOR //Detect player input on editor
             if (Input.GetMouseButtonDown(0)) {
+                waveCount = 10;
                 playerClickPosition = Input.mousePosition;
                 playerClick = true;
                 StartCoroutine(StopEffect());
-                //Debug.Log("Mouse Pos: " + Input.mousePosition);
-            }
+                
+                    //Debug.Log("Mouse Pos: " + Input.mousePosition);
+                }
+                tempTime += Time.deltaTime;
+                if(tempTime>=tempcd)
+                {
+                    if (waveCount > 0)
+                    {
+                        tempTime = 0;
+                        waveCount--;
+                    }
+                }
+        
 
 #elif UNITY_ANDROID || UNITY_IOS || UNITY_TIZEN || UNITY_WP_8_1 //Detect player input for mobiles
             if (Input.touchCount > 0) {
@@ -171,11 +189,18 @@ public class RippleEffect : MonoBehaviour {
     //Converts the vector to texture space
     Vector2 ConvertToTextureSpace(Vector2 value) {
 #if UNITY_EDITOR //Unity editor inverts 'y' axis
-        float _width = 1.0f - (Screen.width - value.x) / Screen.width; //Clamp values to (0, 1)
-        float _height = 1.0f - value.y / Screen.height;
-        //float _height = 1.0f - (Screen.height - value.y) / Screen.height; //Use this if 'y' axis is inverted
+            //float _width = 1.0f - (Screen.width - value.x) / Screen.width; //Clamp values to (0, 1)
+            //float _height = 1.0f - value.y / Screen.height;
 
-        return new Vector2(_width, _height); //Returns new position
+            float _width = 1.0f - (Screen.width - value.x) / Screen.width;
+            float _height =  value.y / Screen.height;
+
+            //Debug.Log("width: " + _width + "height: " + _height);
+            //Debug.Log("width: " + playerClickPosition.x + "height: " + playerClickPosition.y);
+            //Debug.Log("width: " + _width + "width: " + _height);
+            //float _height = 1.0f - (Screen.height - value.y) / Screen.height; //Use this if 'y' axis is inverted
+
+            return new Vector2(_width, _height); //Returns new position
 #else
         float _width = 1.0f - (Screen.width - value.x) / Screen.width; //Clamp values to (0, 1)
         float _height = 1.0f - (Screen.height - value.y) / Screen.height; //Use this if 'y' axis is inverted
