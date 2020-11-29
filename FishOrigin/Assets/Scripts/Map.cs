@@ -247,7 +247,7 @@ public class Map : MonoBehaviour
                 //敌人
                 else if(MapData[i * Width + j]==6f)
                 {
-                    nodes[i, j].temptype = Node.nodetype.zero;
+                    nodes[i, j].temptype = Node.nodetype.danger;
                     deadPos.Add(new Vector2(i, j));
                 }
                 //角色

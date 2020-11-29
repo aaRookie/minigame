@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
 
         //Debug.Log(path.Count);
 
-        if (path.Count > 0&&path.Count <= 4)
+        if (path.Count > 0&&path.Count < 4)
         {
             FlowManager.Instance.ChangeToMove();
             Node p = path.Pop();
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
             }
                 
         }
-        if(path.Count>4)
+        if(path.Count>=4)
         {
             path.Clear();
             FlowManager.Instance.ChangeToChoose();

@@ -171,8 +171,16 @@ public class NodeItem : MonoBehaviour
                                         Debug.Log("tuibox");
                                         Map.Instance.nodes[self.X - i - 1, self.Y].isWall = Map.Instance.nodes[self.X - i, self.Y].isWall;
                                     }
-                                    else
+                                    else if(Map.Instance.nodes[self.X - i, self.Y].temptype == Node.nodetype.danger)
                                     {
+                                        for (int k = 0; k < Map.Instance.deadPos.Count; k++)
+                                        {
+                                            if(Map.Instance.deadPos[k].x== self.X - i&& Map.Instance.deadPos[k].y == self.Y)
+                                            {
+                                                Map.Instance.deadPos.RemoveAt(k);
+                                                Map.Instance.deadPos.Add(new Vector2(self.X - i - 1, self.Y));
+                                            }
+                                        }
                                         //Debug.Log("tuitree");
                                         //Map.Instance.CreateNewNode(self.X - i - 1, self.Y, Map.Instance.nodes[self.X - i, self.Y].temptype);
                                         //Map.Instance.CreateNewNode(self.X - i, self.Y, Node.nodetype.zero);
@@ -228,6 +236,20 @@ public class NodeItem : MonoBehaviour
                                     {
                                         Map.Instance.nodes[self.X + i + 1, self.Y].isWall = Map.Instance.nodes[self.X + i, self.Y].isWall;
                                     }
+                                    else if (Map.Instance.nodes[self.X + i, self.Y].temptype == Node.nodetype.danger)
+                                    {
+                                        for (int k = 0; k < Map.Instance.deadPos.Count; k++)
+                                        {
+                                            if (Map.Instance.deadPos[k].x == self.X + i && Map.Instance.deadPos[k].y == self.Y)
+                                            {
+                                                Map.Instance.deadPos.RemoveAt(k);
+                                                Map.Instance.deadPos.Add(new Vector2(self.X + i + 1, self.Y));
+                                            }
+                                        }
+                                        //Debug.Log("tuitree");
+                                        //Map.Instance.CreateNewNode(self.X - i - 1, self.Y, Map.Instance.nodes[self.X - i, self.Y].temptype);
+                                        //Map.Instance.CreateNewNode(self.X - i, self.Y, Node.nodetype.zero);
+                                    }
 
                                     Map.Instance.ChangeNodesData(self.X + i, self.Y, false);
                                     Map.Instance.nodes[self.X + i, self.Y].temptype = Node.nodetype.zero;
@@ -270,6 +292,20 @@ public class NodeItem : MonoBehaviour
                                     if (Map.Instance.nodes[self.X, self.Y-i].temptype == Node.nodetype.box)
                                     {
                                         Map.Instance.nodes[self.X, self.Y - i - 1].isWall = Map.Instance.nodes[self.X , self.Y - i].isWall;
+                                    }
+                                    else if (Map.Instance.nodes[self.X , self.Y - i].temptype == Node.nodetype.danger)
+                                    {
+                                        for (int k = 0; k < Map.Instance.deadPos.Count; k++)
+                                        {
+                                            if (Map.Instance.deadPos[k].x == self.X  && Map.Instance.deadPos[k].y == self.Y - i)
+                                            {
+                                                Map.Instance.deadPos.RemoveAt(k);
+                                                Map.Instance.deadPos.Add(new Vector2(self.X , self.Y - i - 1));
+                                            }
+                                        }
+                                        //Debug.Log("tuitree");
+                                        //Map.Instance.CreateNewNode(self.X - i - 1, self.Y, Map.Instance.nodes[self.X - i, self.Y].temptype);
+                                        //Map.Instance.CreateNewNode(self.X - i, self.Y, Node.nodetype.zero);
                                     }
 
                                     Map.Instance.ChangeNodesData(self.X, self.Y - i, false);
@@ -314,8 +350,19 @@ public class NodeItem : MonoBehaviour
                                     {
                                         Map.Instance.nodes[self.X, self.Y + i + 1].isWall = Map.Instance.nodes[self.X, self.Y + i].isWall;
                                     }
+                                    else if (Map.Instance.nodes[self.X, self.Y + i].temptype == Node.nodetype.danger)
+                                    {
+                                        for (int k = 0; k < Map.Instance.deadPos.Count; k++)
+                                        {
+                                            if (Map.Instance.deadPos[k].x == self.X && Map.Instance.deadPos[k].y == self.Y + i)
+                                            {
+                                                Map.Instance.deadPos.RemoveAt(k);
+                                                Map.Instance.deadPos.Add(new Vector2(self.X, self.Y + i + 1));
+                                            }
+                                        }
+                                    }
 
-                                    Map.Instance.ChangeNodesData(self.X, self.Y + i, false);
+                                        Map.Instance.ChangeNodesData(self.X, self.Y + i, false);
                                     Map.Instance.nodes[self.X, self.Y + i].temptype = Node.nodetype.zero;
                                     //更新mapdata
                                     float temp2 = Map.Instance.MapData[(self.X) * 10 + self.Y + i];
@@ -393,7 +440,7 @@ public class NodeItem : MonoBehaviour
         }
 
         //空位角色移动
-        else if (self.temptype == Node.nodetype.zero)
+        else if (self.temptype == Node.nodetype.zero|| self.temptype == Node.nodetype.danger)
         {
             if (FlowManager.Instance.getTempFlow() == FlowManager.cFlow.choose)
             {
