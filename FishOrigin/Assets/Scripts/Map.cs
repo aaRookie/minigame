@@ -67,6 +67,50 @@ public class Map : MonoBehaviour
         InitMap();
     }
 
+    public void CreateNewNode(int x,int y, Node.nodetype temp)
+    {
+        float reMapdata = MapData[x * 10 + y];
+        Debug.Log(reMapdata);
+        //销毁gameobject
+        if (GameObject_element[x, y])
+        Destroy(GameObject_element[x, y].gameObject);
+        //清空索引
+        GameObject_element[x, y] = null;
+        //清空地图数据
+        MapData[x*10+y] = 0;
+        //清空node
+        nodes[x, y] = new Node(x, y);
+        nodes[x, y].SetMap(this);
+
+        switch (temp)
+        {
+            case Node.nodetype.tree:
+                nodes[x, y].SetIsWall(true);
+                nodes[x, y].SetIsTree(true);
+
+
+                //float tempt = reMapdata;
+                reMapdata *= 10;
+                nodes[x, y].ChangeDir = (int)reMapdata % 10;
+                //Debug.Log(nodes[x, y].ChangeDir);
+                reMapdata *= 10;
+                nodes[x, y].ChangeX = (int)reMapdata % 10;
+                GameObject_element[x, y]= GameObject.Instantiate(Prefab_tree, Grid_gameobject[x, y].transform.position + new Vector3(0, 0, -0.1f), Quaternion.identity);
+                if (nodes[x, y].ChangeDir == 2)
+                    GameObject_element[x, y].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                if (nodes[x, y].ChangeDir == 3)
+                    GameObject_element[x, y].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                if (nodes[x, y].ChangeDir == 4)
+                    GameObject_element[x, y].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 270));
+                break;
+            default:
+                nodes[x, y].SetIsWall(false);
+                nodes[x, y].temptype = Node.nodetype.zero;
+                break;
+        }
+
+    }
+
     public void ChangeNodesData(int x1,int y1,int x2,int y2)
     {
         Node.nodetype type1 = nodes[x1, y1].temptype;

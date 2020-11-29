@@ -32,8 +32,6 @@ public class NodeItem : MonoBehaviour
 
                     self.FlowerSwitch = !self.FlowerSwitch;
 
-                    //Debug.Log(self.ChangeDir);
-                    //Debug.Log(self.ChangeX);
 
                     //获取变化范围
                     if (influ.Count==0)
@@ -90,23 +88,23 @@ public class NodeItem : MonoBehaviour
                     //    Debug.Log(influ[i].x+" "+influ[i].y);
                     //}
 
-                    //数据和图片变化
-                    if (self.FlowerSwitch)
-                    {
-                        for (int i = 0; i < influ.Count; i++)
-                        {
-                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(true);
-                        }
-                    }
+                    ////数据和图片变化
+                    //if (self.FlowerSwitch)
+                    //{
+                    //    for (int i = 0; i < influ.Count; i++)
+                    //    {
+                    //        Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(true);
+                    //    }
+                    //}
 
-                    else if(!self.FlowerSwitch)
-                    {
-                        for(int i = 0; i < influ.Count; i++)
-                        {
-                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(false);
-                            Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].ReSetNode();
-                        }
-                    }
+                    //else if(!self.FlowerSwitch)
+                    //{
+                    //    for(int i = 0; i < influ.Count; i++)
+                    //    {
+                    //        Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].SetIsWall(false);
+                    //        Map.Instance.nodes[(int)influ[i].x, (int)influ[i].y].ReSetNode();
+                    //    }
+                    //}
                 }
             }
         }
@@ -124,24 +122,33 @@ public class NodeItem : MonoBehaviour
 
                     self.isTree = !self.isTree;
 
-                    //Debug.Log(self.ChangeDir);
+                    float temp = Map.Instance.MapData[self.X * 10 + self.Y];
+                    //Debug.Log(temp);
+                    temp *= 1000;
+                    temp /= 100;
+                    //Debug.Log((int)temp % 10);
+                    self.ChangeDir=((int)temp%10);
+                    //self.ChangeDir = (int)temp % 10;
                     //Debug.Log(self.ChangeX);
+
+                    //Debug.Log(self.isTree);
 
                     //生长
                     if (influ.Count == 0)
-                    {
-                        if(self.isTree==false)
+                    {                       
+                        if (self.isTree==false)
                         {
                             //改变1的触发器开关
                             self.isTree = true;
                             //self.TreeSwitch = true;
-
+                            //Debug.Log(self.ChangeDir);
                             if (self.ChangeDir == 1)
                             {
-                                for (int i = 1; i <= self.ChangeX; i++)
+                                for (int i = 1; i <= 1; i++)
                                 {
+                                    //Debug.Log("fun");
                                     //添加ext坐标
-                                    influ.Add(new Vector2(self.X - i, self.Y));
+                                    influ.Add(new Vector2(self.X - i, self.Y));                              
 
                                     //播放生长动画
                                     Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetTrigger("zhang");
@@ -155,24 +162,34 @@ public class NodeItem : MonoBehaviour
                                     //更新node
                                     //Debug.Log(Map.Instance.nodes[self.X - i, self.Y].isWall);
 
+                                    //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y, self.X - i - 1, self.Y);
-
+                                    
                                     //为box时修复
                                     if (Map.Instance.nodes[self.X - i, self.Y].temptype == Node.nodetype.box)
                                     {
+                                        Debug.Log("tuibox");
                                         Map.Instance.nodes[self.X - i - 1, self.Y].isWall = Map.Instance.nodes[self.X - i, self.Y].isWall;
                                     }
+                                    else
+                                    {
+                                        //Debug.Log("tuitree");
+                                        //Map.Instance.CreateNewNode(self.X - i - 1, self.Y, Map.Instance.nodes[self.X - i, self.Y].temptype);
+                                        //Map.Instance.CreateNewNode(self.X - i, self.Y, Node.nodetype.zero);
+                                    }
 
-                                    //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].isWall);
+                                    //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
 
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y,false);
                                     Map.Instance.nodes[self.X - i, self.Y].temptype = Node.nodetype.zero;
 
                                     
-                                    //更新mapdata
+                                    ////更新mapdata
                                     float temp2 = Map.Instance.MapData[(self.X - i) * 10 + self.Y];
                                     Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y] = temp2;
                                     Map.Instance.MapData[(self.X - i) * 10 + self.Y] = 0;
+
+                                    
 
                                     //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
                                     //Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
@@ -188,7 +205,7 @@ public class NodeItem : MonoBehaviour
                             {
                                 //Map.Instance.GameObject_element[self.X, self.Y].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
                                
-                                for (int i = 1; i <= self.ChangeX; i++)
+                                for (int i = 1; i <= 1; i++)
                                 {
                                     //添加ext坐标
                                     influ.Add(new Vector2(self.X + i, self.Y));
@@ -231,7 +248,7 @@ public class NodeItem : MonoBehaviour
                             }
                             else if (self.ChangeDir == 3)
                             {
-                                for (int i = 1; i <= self.ChangeX; i++)
+                                for (int i = 1; i <= 1; i++)
                                 {
                                     //添加ext坐标
                                     influ.Add(new Vector2(self.X, self.Y - i));
@@ -274,7 +291,7 @@ public class NodeItem : MonoBehaviour
                             }
                             else if (self.ChangeDir == 4)
                             {
-                                for (int i = 1; i <= self.ChangeX; i++)
+                                for (int i = 1; i <= 1; i++)
                                 {
                                     //添加ext坐标
                                     influ.Add(new Vector2(self.X, self.Y + i));
@@ -318,6 +335,7 @@ public class NodeItem : MonoBehaviour
 
                             
                         }
+                        //Debug.Log(Map.Instance.GameObject_element[self.X, self.Y]);
                         Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetTrigger("zhang");
                         self.isTree = false;
                         influ.Clear();

@@ -112,34 +112,34 @@ public class GameUIManager : MonoBehaviour
                 m_numImage.GetComponent<Image>().sprite = numImage[0];
                 break;
             case 2:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[1];
                 break;
             case 3:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[2];
                 break;
             case 4:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[3];
                 break;
             case 5:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[4];
                 break;
             case 6:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[5];
                 break;
             case 7:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[6];
                 break;
             case 8:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[7];
                 break;
             case 9:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[8];
                 break;
             case 10:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[9];
                 break;
             case 11:
-                m_numImage.GetComponent<Image>().sprite = numImage[0];
+                m_numImage.GetComponent<Image>().sprite = numImage[10];
                 break;
         }
     }
