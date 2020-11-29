@@ -147,17 +147,19 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetTrigger("zhang");
 
                                     //移动gameoject
+                                    if(Map.Instance.GameObject_element[self.X - i, self.Y])
                                     Map.Instance.GameObject_element[self.X - i, self.Y].transform.position = Map.Instance.Grid_gameobject[self.X - i - 1, self.Y].transform.position;
                                     //更新列表gameobject
                                     Map.Instance.GameObject_element[self.X - i - 1, self.Y] = Map.Instance.GameObject_element[self.X - i, self.Y];
                                     Map.Instance.GameObject_element[self.X - i, self.Y] = null;
                                     //更新node
                                     Map.Instance.ChangeNodesData(self.X - i, self.Y, self.X - i - 1, self.Y);
-                                    Map.Instance.ChangeNodesData(self.X - i, self.Y,true);
+                                    Map.Instance.ChangeNodesData(self.X - i, self.Y,false);
+                                    Map.Instance.nodes[self.X - i, self.Y].temptype = Node.nodetype.zero;
                                     //更新mapdata
                                     float temp2 = Map.Instance.MapData[(self.X - i) * 10 + self.Y];
                                     Map.Instance.MapData[(self.X - i - 1) * 10 + self.Y] = temp2;
-                                    Map.Instance.MapData[(self.X - i) * 10 + self.Y] = 1;
+                                    Map.Instance.MapData[(self.X - i) * 10 + self.Y] = 0;
 
                                     //Debug.Log(Map.Instance.nodes[self.X - i - 1, self.Y].temptype);
                                     //Debug.Log(Map.Instance.nodes[self.X - 1, self.Y].temptype);
@@ -211,9 +213,12 @@ public class NodeItem : MonoBehaviour
                                     Map.Instance.GameObject_element[self.X, self.Y + 1].transform.position = Map.Instance.Grid_gameobject[self.X, self.Y + i + 1].transform.position;
                                 }
                             }
-                       }
 
-
+                            
+                        }
+                        Map.Instance.GameObject_element[self.X, self.Y].transform.GetChild(0).GetComponent<Animator>().SetTrigger("zhang");
+                        self.isTree = false;
+                        influ.Clear();
                         return;                      
                     }
 

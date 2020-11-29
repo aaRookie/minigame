@@ -189,6 +189,7 @@ public class Map : MonoBehaviour
                 {
                     end_x = i;
                     end_y = j;
+                    nodes[i, j].temptype = Node.nodetype.zero;
                 }
             }
         }
