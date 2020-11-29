@@ -9,7 +9,7 @@ public class LevelData : MonoBehaviour
     private int Level1MoveNum = 4;
     private int Level2MoveNum = 5;
     private int Level3MoveNum = 3;
-    private int Level4MoveNum = 8;
+    private int Level4MoveNum = 4;
     private int Level5MoveNum = 8;
     private int Level6MoveNum = 8;
     private int Level7MoveNum = 8;
@@ -139,11 +139,11 @@ public class LevelData : MonoBehaviour
     [HideInInspector]
     private float[] level4_map = new float[100] {0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
                                                  0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
-                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
-                                                 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 1.000f, 1.000f, 0.000f, 0.000f,
-                                                 0.000f, 0.000f, 0.000f, 0.000f, 4.000f, 4.000f, 0.000f, 9.000f, 1.000f, 0.000f,
-                                                 0.000f, 0.000f, 0.000f, 10.00f, 1.000f, 0.000f, 0.000f, 1.000f, 0.000f, 0.000f,
-                                                 0.000f, 0.000f, 1.000f, 1.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 1.000f, 0.000f, 1.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 1.000f, 0.000f, 4.000f, 0.000f, 9.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 4.000f, 0.000f, 4.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 10.00f, 1.000f, 0.000f, 1.000f, 0.000f, 0.000f, 0.000f, 0.000f,
+                                                 0.000f, 0.000f, 0.000f, 1.000f, 0.000f, 1.000f, 0.000f, 0.000f, 0.000f, 0.000f,
                                                  0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
                                                  0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f,
                                                  0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f, 0.000f };
