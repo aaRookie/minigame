@@ -29,7 +29,6 @@ public class SelectUIManager : MonoBehaviour
         ShowGamePanel();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

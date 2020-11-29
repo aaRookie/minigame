@@ -56,6 +56,7 @@ public class GameUIManager : MonoBehaviour
         m_movenum.text = i.ToString();
     }
 
+
     public void Update()
     {
         if (Input.GetMouseButtonDown(0))

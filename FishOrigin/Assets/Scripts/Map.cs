@@ -92,15 +92,17 @@ public class Map : MonoBehaviour
         if(player_x==end_x&&player_y==end_y)
         {
             FlowManager.Instance.ChangeToWin();
-            Debug.Log("win");
+            FlowManager.Instance.WinFun();
+            //Debug.Log("win");
+            //GameUIManager.Instance.HideGamePanel();
         }
     }
 
     //初始化地图
     void InitMap()
     {
-        //LoadLevelData(SelectLevel.Instance.CurrentLevel);
-        LoadLevelData(6);
+        LoadLevelData(SelectLevel.Instance.CurrentLevel);
+        //LoadLevelData(6);
 
         player_x = 0;
         player_y = 0;

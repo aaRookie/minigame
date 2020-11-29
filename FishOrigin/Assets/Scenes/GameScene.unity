@@ -562,7 +562,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   waveInternalRadio: 0.01
   waveExternalRadio: 0.6
-  waveScale: 1.2
+  waveScale: 1.6
   waveSpeed: 0.2
   waveFrequency: 0.5
   circleXScale: 1

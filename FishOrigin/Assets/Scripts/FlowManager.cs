@@ -87,10 +87,22 @@ public class FlowManager : MonoBehaviour
         //SceneManager.LoadScene(1);
     }
 
+    public void WinFun()
+    {
+        GameUIManager.Instance.HideGamePanel();
+        StartCoroutine(LoadLevelScene());
+    }
+
     IEnumerator LoadCurrentScene()
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(1);
+    }
+
+    IEnumerator LoadLevelScene()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(0);
     }
 
 }
