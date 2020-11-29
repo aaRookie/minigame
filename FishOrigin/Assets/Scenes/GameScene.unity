@@ -1096,7 +1096,7 @@ MonoBehaviour:
   returnButton: {fileID: 488042786}
   Prefab_bowen: {fileID: 2054049161354992929, guid: da70df62fd4c5b64991ad58cc66125a6,
     type: 3}
-  mouseDefault: {fileID: 2800000, guid: 5c5c0c0a681fcdf4db5e892cd75a611b, type: 3}
+  mouseDefault: {fileID: 2800000, guid: 3ebe013e1ad24ed43b30f3a3055183ca, type: 3}
   mouseInFish: {fileID: 2800000, guid: 46ed7ba82f9fcd247bbf29549ab10547, type: 3}
   mouseOutFish: {fileID: 0}
   m_movenum: {fileID: 1836470681}
