@@ -87,10 +87,10 @@ public class Player : MonoBehaviour
                 if (n.X == Map.Instance.deadPos[i].x && n.Y == Map.Instance.deadPos[i].y)
                 {
                     FlowManager.Instance.ChangeToDead();
-                    Debug.Log(Map.Instance.GameObject_element[n.X, n.Y]);
+                    //Debug.Log(Map.Instance.GameObject_element[n.X, n.Y]);
                     Map.Instance.GameObject_element[n.X, n.Y].GetComponent<Animator>().SetTrigger("eat");
                     Map.Instance.m_player.transform.localScale = Vector3.zero;
-                    yield return new WaitForSeconds(1.5f);
+                    yield return new WaitForSeconds(2.5f);
                     FlowManager.Instance.DeadFun();
                 }
             }
